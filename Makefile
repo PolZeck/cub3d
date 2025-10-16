@@ -35,7 +35,15 @@ CPPFLAGS    += $(LIBFT_INC) $(MLX_INC)
 
 # === SOURCES ===
 SRCS := \
-	main.c
+	main.c \
+	parse.c \
+	parse_textures.c \
+	parse_map.c \
+	parse_colors.c \
+	free.c \
+	errors.c \
+	check_map.c \
+	utils.c
 
 SRCS_BONUS :=
 

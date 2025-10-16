@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 12:01:14 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/15 13:05:20 by pledieu          ###   ########.fr       */
+/*   Created: 2025/10/15 13:12:52 by pledieu           #+#    #+#             */
+/*   Updated: 2025/10/15 13:12:57 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+int	ft_max(int a, int b)
 {
-	t_config cfg;
-
-	if (ac != 2)
-		error_exit("Error\nUsage: ./cub3D <file.cub>");
-	parse_config(av[1], &cfg);
-	// Ici: vous pouvez afficher quelques infos pour valider:
-	ft_printf("Map: %dx%d | Player: (%d,%d,%c)\n",
-		cfg.map_w, cfg.map_h, cfg.player_x, cfg.player_y, cfg.player_dir);
-	// ... plus tard: init MLX, etc.
-	free_config(&cfg);
-	return (0);
+	return (a > b ? a : b);
 }

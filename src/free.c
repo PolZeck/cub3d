@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 12:01:14 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/15 13:05:20 by pledieu          ###   ########.fr       */
+/*   Created: 2025/10/15 13:00:53 by pledieu           #+#    #+#             */
+/*   Updated: 2025/10/15 13:01:02 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+void	free_split(char **tab)
 {
-	t_config cfg;
+	int i = 0;
+	if (!tab) return;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+}
 
-	if (ac != 2)
-		error_exit("Error\nUsage: ./cub3D <file.cub>");
-	parse_config(av[1], &cfg);
-	// Ici: vous pouvez afficher quelques infos pour valider:
-	ft_printf("Map: %dx%d | Player: (%d,%d,%c)\n",
-		cfg.map_w, cfg.map_h, cfg.player_x, cfg.player_y, cfg.player_dir);
-	// ... plus tard: init MLX, etc.
-	free_config(&cfg);
-	return (0);
+void	free_config(t_config *cfg)
+{
+	if (!cfg) return;
+	free(cfg->tx.no);
+	free(cfg->tx.so);
+	free(cfg->tx.we);
+	free(cfg->tx.ea);
+	if (cfg->map)
+	{
+		for (int i = 0; i < cfg->map_h; ++i)
+			free(cfg->map[i]);
+		free(cfg->map);
+	}
 }
