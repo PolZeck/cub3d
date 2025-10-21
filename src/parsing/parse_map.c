@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:00 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/15 14:19:22 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/21 13:28:42 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	parse_map_collect(char ***vec, int *n, int *cap, char *line)
 static int copy_and_pad(char *dst, const char *src, int w)
 {
 	int i = 0;
+
 	while (src[i] && i < w)
 	{
 		if (src[i] == ' ' || src[i] == '\t')
@@ -50,11 +51,10 @@ static int copy_and_pad(char *dst, const char *src, int w)
 		i++;
 	}
 	while (i < w)
-		dst[i++] = '1';   // pad en '1' pour fermer la carte
+		dst[i++] = ' ';
 	dst[i] = '\0';
 	return (1);
 }
-
 
 
 int	normalize_map(t_config *cfg, char **raw, int n)
