@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:00 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/21 13:28:42 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/22 10:03:34 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,21 @@ static int copy_and_pad(char *dst, const char *src, int w)
 {
 	int i = 0;
 
+	/* On COPIE tel quel tous les caractères (0/1/N/S/E/W/espaces).
+	   Les espaces dans la ligne font partie de la map (vide), conforme au sujet.
+	   Le strip CRLF est fait plus haut dans parse.c, donc pas besoin ici. */
 	while (src[i] && i < w)
 	{
-		if (src[i] == ' ' || src[i] == '\t')
-			error_exit("Error\nSpaces not allowed in map");
 		dst[i] = src[i];
 		i++;
 	}
+	/* On pad en ' ' jusqu’à la largeur max pour matérialiser l'extérieur */
 	while (i < w)
 		dst[i++] = ' ';
 	dst[i] = '\0';
-	return (1);
+	return 1;
 }
+
 
 
 int	normalize_map(t_config *cfg, char **raw, int n)
