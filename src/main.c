@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:01:14 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 10:37:58 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/22 10:58:09 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,15 @@
 // 		cfg->map_w, cfg->map_h, cfg->player_x, cfg->player_y, cfg->player_dir);
 // }
 
-
-#include "cub3d.h"
-
 int	main(int ac, char **av)
 {
-	t_config cfg;
+	t_config	cfg;
 
 	if (ac != 2)
 		error_exit("Error\nUsage: ./cub3D <file.cub>");
-
 	parse_config(av[1], &cfg);
-
 	// Debug: pour vérifier la map avant d’entrer dans l’app
 	// print_map_debug(&cfg, 1, 1);
-
 	run_app(&cfg);
-	return 0;
+	return (0);
 }
-
