@@ -39,10 +39,13 @@ SRCS := \
 	parsing/parse.c \
 	parsing/parse_textures.c \
 	parsing/parse_map.c \
+	parsing/check_map.c \
 	parsing/parse_colors.c \
+	app/hooks.c \
+	app/init.c \
+	raycast/raycast.c \
 	utils/free.c \
 	utils/errors.c \
-	parsing/check_map.c \
 	utils/utils.c
 
 SRCS_BONUS :=
