@@ -6,17 +6,18 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 10:53:25 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/23 10:15:35 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
+#include "cub3d.h"
 #include "runtime.h"
 #include "raycast.h"
 
 int	on_close(t_app *a)
 {
 	if (a->frame.img) mlx_destroy_image(a->mlx, a->frame.img);
+	destroy_textures(a);
 	if (a->win) mlx_destroy_window(a->mlx, a->win);
 	// mlx_destroy_display(a->mlx); // selon version, à activer si fourni
 	free_config(&a->cfg);

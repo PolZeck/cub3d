@@ -43,10 +43,12 @@ SRCS := \
 	parsing/parse_colors.c \
 	app/hooks.c \
 	app/init.c \
+	app/textures.c \
 	raycast/render.c \
 	raycast/ray_dda.c \
 	raycast/ray_post.c \
 	raycast/ray_setup.c \
+	raycast/texturemap.c \
 	raycast/vline.c \
 	utils/free.c \
 	utils/errors.c \

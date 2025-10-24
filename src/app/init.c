@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:21 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 10:33:24 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/23 10:08:42 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	run_app(t_config *cfg)
 	a.win = mlx_new_window(a.mlx, a.win_w, a.win_h, "cub3D"); if (!a.win) error_exit("Error\nmlx_new_window failed");
 	new_frame(&a, a.win_w, a.win_h);
 	init_player_from_cfg(&a);
+	load_textures(&a);
 
 	mlx_hook(a.win, 17, 0, on_close, &a);           // croix rouge
 	mlx_hook(a.win, 2, 1L<<0, on_key_down, &a);     // KeyPress

@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 10:43:31 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/24 17:07:38 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 /* Keycodes (Linux/X11) */
 #define KEY_ESC   65307
 #define KEY_W     119
-#define KEY_A     97
+#define KEY_D     97
 #define KEY_S     115
-#define KEY_D     100
+#define KEY_A     100
 #define KEY_LEFT  65361
 #define KEY_RIGHT 65363
 
 /* -------------------- Runtime -------------------- */
+
+
 
 
 typedef struct s_img {
@@ -47,6 +49,13 @@ typedef struct s_player {
 	double	plane_x, plane_y; // vecteur plan (FOV ~66% -> 0.66)
 }	t_player;
 
+typedef struct s_texset {
+	t_img	no;
+	t_img	so;
+	t_img	we;
+	t_img	ea;
+}	t_texset;
+
 typedef struct s_app {
 	void		*mlx;
 	void		*win;
@@ -60,7 +69,21 @@ typedef struct s_app {
 	// input
 	int			key_w, key_a, key_s, key_d;
 	int			key_left, key_right;
+	t_texset	tex;
 }	t_app;
+
+
+typedef enum e_face {
+	FACE_NO, FACE_SO, FACE_WE, FACE_EA
+}	t_face;
+
+
+/* chargement / destruction */
+int  load_textures(t_app *a);
+void destroy_textures(t_app *a);
+
+/* sampling */
+int  texel_at(const t_img *tex, int u, int v);
 
 /* API runtime */
 int		run_app(t_config *cfg);

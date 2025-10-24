@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:50:56 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 11:30:31 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/23 10:09:19 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int		column_color(t_ray *r);
 void	dda_init(t_app *a, t_ray *r);
 void	ray_init(t_app *a, t_ray *r, int x);
 int		render_frame(t_app *a);
+t_face	pick_face(int side, double ray_dir_x, double ray_dir_y);
 
 #endif
