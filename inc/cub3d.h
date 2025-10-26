@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 18:13:31 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 18:53:03 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		check_map_closed(const t_config *cfg);
 
 /* ================== Utils ============= */
 int		ft_max(int a, int b);
+int	normalize_map(t_config *cfg, char **raw, int n);
 
 void	init_pstate(t_pstate *st);
 int		read_one_line(t_pstate *st);
@@ -102,6 +103,10 @@ char	*skip_spaces(const char *s);
 int	is_only_spaces(const char *s);
 int	is_header_line(const char *line);
 void	append_or_die(t_pstate *st, char *line);
+int	alloc_map_rows(t_config *cfg, int h);
+int	copy_rows_or_fail(t_config *cfg, char **raw, int h, int w);
+void	free_raw_vec(char **raw, int h);
+int	check_map_closed(const t_config *cfg);
 
 
 

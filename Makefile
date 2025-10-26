@@ -42,6 +42,8 @@ SRCS := \
 	parsing/check_map.c \
 	parsing/parse_colors.c \
 	parsing/str_utils.c \
+	parsing/normalize_map_utils.c \
+	parsing/check_map_closed.c \
 	app/hooks.c \
 	app/init.c \
 	app/textures.c \
