@@ -53,6 +53,7 @@ SRCS := \
 	raycast/ray_post.c \
 	raycast/ray_setup.c \
 	raycast/texturemap.c \
+	raycast/get_text.c \
 	raycast/vline.c \
 	utils/free.c \
 	utils/errors.c \
