@@ -41,11 +41,13 @@ SRCS := \
 	parsing/parse_map.c \
 	parsing/check_map.c \
 	parsing/parse_colors.c \
+	parsing/str_utils.c \
 	app/hooks.c \
 	app/init.c \
 	app/textures.c \
 	app/window.c \
 	app/draw.c \
+	parsing/parse_config_utils.c \
 	app/controls.c \
 	app/movements.c \
 	raycast/render.c \

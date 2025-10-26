@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 10:36:58 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 18:13:31 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
+
+typedef struct s_pstate
+{
+	int		fd;
+	char	*line;
+	bool	in_map;
+	bool	seen_blank_after_map;
+	char	**raw;
+	int		n;
+	int		cap;
+}	t_pstate;
 
 typedef struct s_rgb
 {
@@ -76,5 +87,23 @@ int		check_map_closed(const t_config *cfg);
 
 /* ================== Utils ============= */
 int		ft_max(int a, int b);
+
+void	init_pstate(t_pstate *st);
+int		read_one_line(t_pstate *st);
+void	strip_eol(char *line);
+void	before_map_step(t_config *cfg, t_pstate *st,
+			int (*is_hdr)(const char *),
+			int (*parse_hdr)(t_config *, const char *));
+void	in_map_step(t_config *cfg, t_pstate *st);
+void	finalize_config(t_config *cfg, t_pstate *st,
+			int (*is_blank)(const char *));
+
+char	*skip_spaces(const char *s);
+int	is_only_spaces(const char *s);
+int	is_header_line(const char *line);
+void	append_or_die(t_pstate *st, char *line);
+
+
+
 
 #endif
