@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/24 17:07:38 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 12:49:55 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ typedef struct s_app {
 	t_texset	tex;
 }	t_app;
 
+typedef struct s_orient {
+	double	dx;
+	double	dy;
+	double	px;
+	double	py;
+}	t_orient;
 
 typedef enum e_face {
 	FACE_NO, FACE_SO, FACE_WE, FACE_EA
@@ -88,11 +94,6 @@ int  texel_at(const t_img *tex, int u, int v);
 /* API runtime */
 int		run_app(t_config *cfg);
 
-/* Draw / math */
-int		rgb24(int r, int g, int b);
-void	put_px(t_img *img, int x, int y, int color);
-void	fill_half_screens(t_app *a); // fond plafond/sol
-
 /* Hooks / player */
 int		on_close(t_app *a);
 int		on_key_down(int keycode, t_app *a);
@@ -100,5 +101,16 @@ int		on_key_up(int keycode, t_app *a);
 int		on_loop(t_app *a);
 void	init_player_from_cfg(t_app *a);
 void	update_player(t_app *a, double move_speed, double rot_speed);
+int		rgb24(int r, int g, int b);
+void	put_px(t_img *img, int x, int y, int color);
+void	fill_half_screens(t_app *a);
+
+void	new_frame(t_app *a, int w, int h);
+void	init_mlx_and_window(t_app *a);
+void	setup_hooks(t_app *a);
+void	init_player_from_cfg(t_app *a);
+int		run_app(t_config *cfg);
+
+
 
 #endif

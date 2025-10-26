@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 09:21:08 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 11:52:05 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int parse_config(const char *path, t_config *cfg)
 {
     int   fd;
     char *line;
-    bool  in_map = false;              // <= une seule fois
+    bool  in_map = false;
     bool  seen_blank_after_map = false;
     char **raw_lines = NULL;
     int   n = 0, cap = 0;
@@ -64,7 +64,6 @@ int parse_config(const char *path, t_config *cfg)
     fd = open(path, O_RDONLY);
     if (fd < 0)
         error_exit("Error\nCannot open .cub");
-
     while ((line = get_next_line(fd)))
     {
         // strip \n et \r (CRLF)
@@ -108,7 +107,6 @@ int parse_config(const char *path, t_config *cfg)
         }
     }
     close(fd);
-
     if (!in_map)
         error_exit("Error\nMissing map at end of file");
     if (!check_required_headers(cfg))
@@ -119,13 +117,9 @@ int parse_config(const char *path, t_config *cfg)
     }
     if (n == 0)
         error_exit("Error\nEmpty map");
-    // 🔺🔺🔺 FIN DU BLOC À INSÉRER 🔺🔺🔺
-
     if (!normalize_map(cfg, raw_lines, n))
         error_exit("Error\nMap normalization failed");
-
     if (!validate_config(cfg))
         error_exit("Error\nInvalid configuration");
-
     return (1);
 }

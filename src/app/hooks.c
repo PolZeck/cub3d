@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 11:00:54 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 12:39:33 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ void	update_player(t_app *a, double move_speed, double rot_speed)
 		a->pl.plane_x = a->pl.plane_x * cos(angle) - a->pl.plane_y * sin(angle);
 		a->pl.plane_y = old_plane_x * sin(angle) + a->pl.plane_y * cos(angle);
 	}
+}
+
+void	setup_hooks(t_app *a)
+{
+	mlx_hook(a->win, 17, 0, on_close, a);
+	mlx_hook(a->win, 2, 1L << 0, on_key_down, a);
+	mlx_hook(a->win, 3, 1L << 1, on_key_up, a);
+	mlx_loop_hook(a->mlx, on_loop, a);
 }
 
 int	on_loop(t_app *a)

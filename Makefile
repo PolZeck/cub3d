@@ -44,6 +44,8 @@ SRCS := \
 	app/hooks.c \
 	app/init.c \
 	app/textures.c \
+	app/window.c \
+	app/draw.c \
 	raycast/render.c \
 	raycast/ray_dda.c \
 	raycast/ray_post.c \
