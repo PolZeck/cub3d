@@ -46,6 +46,8 @@ SRCS := \
 	app/textures.c \
 	app/window.c \
 	app/draw.c \
+	app/controls.c \
+	app/movements.c \
 	raycast/render.c \
 	raycast/ray_dda.c \
 	raycast/ray_post.c \

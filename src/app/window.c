@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:39:04 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 12:39:10 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 13:06:32 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	new_frame(t_app *a, int w, int h)
 	a->frame.img = mlx_new_image(a->mlx, w, h);
 	if (!a->frame.img)
 		error_exit("Error\nmlx_new_image failed");
-	a->frame.addr = mlx_get_data_addr(\
-		a->frame.img, &a->frame.bpp, &a->frame.line_len, &a->frame.endian);
+	a->frame.addr = mlx_get_data_addr(a->frame.img, &a->frame.bpp,
+			&a->frame.line_len, &a->frame.endian);
 	a->frame.w = w;
 	a->frame.h = h;
 	if (!a->frame.addr)
