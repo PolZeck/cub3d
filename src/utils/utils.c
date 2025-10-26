@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:12:52 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/15 13:12:57 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 11:47:03 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int	ft_max(int a, int b)
 {
-	return (a > b ? a : b);
+	if (a > b)
+		return (a);
+	return (b);
 }

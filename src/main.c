@@ -6,13 +6,14 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:01:14 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/24 17:06:48 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 11:28:04 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "runtime.h"
 #include <unistd.h>
+
 //debug function
 // void	print_map_debug(const t_config *cfg, int show_spaces)
 // {
