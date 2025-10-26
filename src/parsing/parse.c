@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 18:13:05 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 18:15:46 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	finalize_config(t_config *cfg, t_pstate *st,
 	if (!validate_config(cfg))
 		error_exit("Error\nInvalid configuration");
 }
-
 
 int	parse_line_header(t_config *cfg, const char *line)
 {
