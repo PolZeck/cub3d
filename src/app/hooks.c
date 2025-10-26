@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 10:50:47 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/26 11:00:54 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	on_close(t_app *a)
 	free_config(&a->cfg);
 	exit(0);
 }
-
 
 int	on_key_down(int key, t_app *a)
 {
