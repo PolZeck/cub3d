@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 18:52:31 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 11:03:47 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,4 @@ int	validate_config(t_config *cfg)
 		error_exit("Error\nMap not closed");
 	return (1);
 }
+	

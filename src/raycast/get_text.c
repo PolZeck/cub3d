@@ -6,10 +6,11 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:39:36 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 13:39:56 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 10:24:17 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "runtime.h"
 #include "raycast.h"
 
 static t_face	pick_face(int side, double rdx, double rdy)

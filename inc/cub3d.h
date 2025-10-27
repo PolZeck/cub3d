@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 18:53:03 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 10:53:50 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
+#include "vec2.h"
 
 typedef struct s_pstate
 {

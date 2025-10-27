@@ -53,12 +53,12 @@ SRCS := \
 	app/controls.c \
 	app/movements.c \
 	raycast/render.c \
-	raycast/ray_dda.c \
+	raycast/ray_intersect.c \
 	raycast/ray_post.c \
 	raycast/ray_setup.c \
 	raycast/texturemap.c \
 	raycast/get_text.c \
-	raycast/vline.c \
+	raycast/ray_box_intersect.c \
 	utils/free.c \
 	utils/errors.c \
 	utils/utils.c

@@ -6,10 +6,11 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 10:09:42 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 13:45:40 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 10:24:36 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "runtime.h"
 #include "raycast.h"
 
 static double	wall_hit_x(const t_app *a, const t_ray *r)

@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vline.c                                            :+:      :+:    :+:   */
+/*   vec2.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 10:52:15 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 11:30:18 by pledieu          ###   ########.fr       */
+/*   Created: 2025/10/27 08:23:29 by pledieu           #+#    #+#             */
+/*   Updated: 2025/10/27 08:24:05 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#ifndef VEC2_H
+# define VEC2_H
 
-void	draw_vline(t_img *img, t_vline v)
-{
-	int	y;
 
-	if (v.x < 0 || v.x >= img->w)
-		return ;
-	if (v.y0 < 0)
-		v.y0 = 0;
-	if (v.y1 >= img->h)
-		v.y1 = img->h - 1;
-	y = v.y0;
-	while (y <= v.y1)
-	{
-		put_px(img, v.x, y, v.color);
-		y++;
-	}
-}
+typedef struct s_v2 { double x; double y; } t_v2;
+
+static inline t_v2 v2(double x, double y) { t_v2 r = {x, y}; return r; }
+static inline t_v2 v2_add(t_v2 a, t_v2 b) { return v2(a.x + b.x, a.y + b.y); }
+static inline t_v2 v2_sub(t_v2 a, t_v2 b) { return v2(a.x - b.x, a.y - b.y); }
+static inline t_v2 v2_scale(t_v2 a, double k) { return v2(a.x * k, a.y * k); }
+
+#endif

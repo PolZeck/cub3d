@@ -6,10 +6,11 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:22:57 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/22 11:31:54 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 10:24:24 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "runtime.h"
 #include "raycast.h"
 
 static int	side_tint(int base, int side)
