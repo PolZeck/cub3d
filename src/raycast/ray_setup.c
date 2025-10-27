@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:23:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 10:26:16 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 11:15:48 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@ void	ray_init(t_app *a, t_ray *r, int x)
 	r->ray_dir = v2_add(a->pl.dir, v2_scale(a->pl.plane, r->camera_x));
 	r->map_x = (int)a->pl.pos_x;
 	r->map_y = (int)a->pl.pos_y;
-	r->delta_x = (r->ray_dir_x == 0.0) ? 1e30 : fabs(1.0 / r->ray_dir_x);
-	r->delta_y = (r->ray_dir_y == 0.0) ? 1e30 : fabs(1.0 / r->ray_dir_y);
+	if (r->ray_dir_x == 0.0)
+		r->delta_x = 1e30 ;
+	else
+		r->delta_x = fabs(1.0 / r->ray_dir_x);
+	if (r->ray_dir_y == 0.0)
+		r->delta_y = 1e30 ;
+	else
+		r->delta_y = fabs(1.0 / r->ray_dir_y);
 	r->hit = 0;
 }
 
