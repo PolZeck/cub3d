@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:22:57 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 10:24:24 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 12:58:31 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,19 @@ static int	side_tint(int base, int side)
 
 void	ray_post(t_app *a, t_ray *r)
 {
-	if (r->side == 0)
-	{
-		if (r->ray_dir_x == 0)
-			r->perp_dist = 1e6;
-		else
-			r->perp_dist = (r->map_x - a->pl.pos_x
-					+ (1 - r->step_x) / 2.0) / r->ray_dir_x;
-	}
-	else
-	{
-		if (r->ray_dir_y == 0)
-			r->perp_dist = 1e6;
-		else
-			r->perp_dist = (r->map_y - a->pl.pos_y
-					+ (1 - r->step_y) / 2.0) / r->ray_dir_y;
-	}
-	if (r->perp_dist < 1e-6)
-		r->perp_dist = 1e-6;
+	double	t;
+	double	hx;
+	double	hy;
+	double	perp;
+
+	t = r->t;
+	hx = a->pl.pos_x + t * r->ray_dir_x;
+	hy = a->pl.pos_y + t * r->ray_dir_y;
+	perp = (hx - a->pl.pos_x) * a->pl.dir.x
+		+ (hy - a->pl.pos_y) * a->pl.dir.y;
+	if (perp < 1e-6)
+		perp = 1e-6;
+	r->perp_dist = perp;
 	r->line_h = (int)(a->frame.h / r->perp_dist);
 	r->draw_start = -r->line_h / 2 + a->frame.h / 2;
 	r->draw_end = r->line_h / 2 + a->frame.h / 2;

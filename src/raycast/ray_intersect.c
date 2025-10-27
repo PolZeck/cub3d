@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 09:39:40 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 11:10:05 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 13:27:48 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_wall(const t_app *a, int x, int y)
 
 static void	update_best_hit(t_ray *r, const t_hit_update *u)
 {
-	r->perp_dist = u->t;
+	r->t = u->t;
 	r->map_x = u->x;
 	r->map_y = u->y;
 	r->side = u->side;
@@ -42,7 +42,7 @@ static void	check_cell_hit(t_app *a, t_ray *r, int x, int y)
 	q.by = y;
 	if (ray_box_intersect(&q, &h))
 	{
-		if (h.t_enter > 0.0 && h.t_enter < r->perp_dist)
+		if (h.t_enter > 0.0 && h.t_enter < r->t)
 		{
 			u.t = h.t_enter;
 			u.x = x;
@@ -58,7 +58,7 @@ void	ray_find_first_hit(t_app *a, t_ray *r)
 	int	y;
 	int	x;
 
-	r->perp_dist = DBL_MAX;
+	r->t = DBL_MAX;
 	r->hit = 0;
 	y = 0;
 	while (y < MAP_H(a))
@@ -72,6 +72,6 @@ void	ray_find_first_hit(t_app *a, t_ray *r)
 		}
 		y++;
 	}
-	if (r->perp_dist < DBL_MAX)
+	if (r->t < DBL_MAX)
 		r->hit = 1;
 }

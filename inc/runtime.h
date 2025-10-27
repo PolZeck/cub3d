@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 11:03:36 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/27 12:56:58 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ typedef struct s_ray {
 	int		map_x, map_y;
 	int		step_x, step_y;
 	int		hit;
-	int		side;      /* 0: vertical, 1: horizontal */
+	int		side;
+	double  t;
 	double	perp_dist;
 	int		line_h;
 	int		draw_start, draw_end;
