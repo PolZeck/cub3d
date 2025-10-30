@@ -6,7 +6,7 @@
 /*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/30 13:07:05 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/10/30 14:01:48 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,6 @@ void	setup_hooks(t_app *a);
 void	init_player_from_cfg(t_app *a);
 int		run_app(t_config *cfg);
 
-
+void	minimap_draw(t_app *a); /*pour la minimap*/
 
 #endif

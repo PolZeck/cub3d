@@ -61,7 +61,8 @@ SRCS := \
 	raycast/ray_box_intersect.c \
 	utils/free.c \
 	utils/errors.c \
-	utils/utils.c
+	utils/utils.c \
+	minimap/minimap.c
 
 SRCS_BONUS :=
 
