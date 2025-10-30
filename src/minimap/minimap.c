@@ -6,7 +6,7 @@
 /*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:32:35 by lcosson           #+#    #+#             */
-/*   Updated: 2025/10/30 14:14:20 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/10/30 15:00:56 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,42 +32,76 @@ static int	color_for_cell(char c)
 	return 0xAAAAAA;                // sol / spawn / vide
 }
 
-/* --- dessin des tuiles --- */
-
-static void	draw_tiles(t_app *a, int offx, int offy)
+/* --- tuiles autour du joueur, centrées --- */
+static void draw_tiles_centered(t_app *a, int offx, int offy)
 {
-	int y;
+	int tile, vis_w, vis_h, rad_x, rad_y;
+	int cy, cx;
+	int dy, dx;
 
-	y = 0;
-	while (y < a->cfg.map_h && (y * a->minimap.tile) < a->minimap.h)
+	tile = a->minimap.tile;
+	vis_w = a->minimap.w / tile;
+	vis_h = a->minimap.h / tile;
+	if (tile <= 0 || vis_w <= 0 || vis_h <= 0)
+		return;
+
+	rad_x = vis_w / 2;
+	rad_y = vis_h / 2;
+
+	cx = (int)a->pl.pos_x;
+	cy = (int)a->pl.pos_y;
+
+	dy = -rad_y;
+	while (dy < rad_y)
 	{
-		int x = 0;
-		while (x < a->cfg.map_w && (x * a->minimap.tile) < a->minimap.w)
+		int y = cy + dy;
+		int dest_y = offy + (dy + rad_y) * tile;
+
+		dx = -rad_x;
+		while (dx < rad_x)
 		{
-			int cx = offx + x * a->minimap.tile;
-			int cy = offy + y * a->minimap.tile;
-			fill_rect(&a->frame, cx, cy, a->minimap.tile, a->minimap.tile,
-				color_for_cell(a->cfg.map[y][x]));
-			x++;
+			int x = cx + dx;
+			int dest_x = offx + (dx + rad_x) * tile;
+			int color;
+
+			if (y >= 0 && y < a->cfg.map_h && x >= 0 && x < a->cfg.map_w)
+				color = color_for_cell(a->cfg.map[y][x]);
+			else
+				color = 0x000000;
+
+			fill_rect(&a->frame, dest_x, dest_y, tile, tile, color);
+			dx++;
 		}
-		y++;
+		dy++;
 	}
 }
 
-/* --- joueur + direction --- */
-
-static void	draw_player(t_app *a, int offx, int offy)
+/* --- joueur centré sur SA CASE minimap --- */
+static void draw_player_centered_tile(t_app *a, int offx, int offy)
 {
-	int px = offx + (int)(a->pl.pos_x * a->minimap.tile);
-	int py = offy + (int)(a->pl.pos_y * a->minimap.tile);
+	int tile = a->minimap.tile;
+	int vis_w = a->minimap.w / tile;
+	int vis_h = a->minimap.h / tile;
 
-	/* point joueur */
-	fill_rect(&a->frame, px - 2, py - 2, 4, 4, 0xFF0000);
+	if (tile <= 0 || vis_w <= 0 || vis_h <= 0)
+		return;
 
-	/* direction (petit point à l’extrémité du vecteur) */
+	/* indice de la tuile centrale dans la fenêtre (col, row) */
+	/* NB: si vis_w/vis_h sont pairs, on choisit la tuile "de gauche/haut" du centre */
+	int center_col = vis_w / 2;
+	int center_row = vis_h / 2;
+
+	/* centre pixel de cette tuile centrale */
+	int cx = offx + center_col * tile + tile / 2;
+	int cy = offy + center_row * tile + tile / 2;
+
+	/* point joueur au centre de SA case */
+	fill_rect(&a->frame, cx - 2, cy - 2, 4, 4, 0xFF0000);
+
+	/* petit marqueur de direction à partir du centre de cette case */
 	{
-		int ex = px + (int)(a->pl.dir_x * (a->minimap.tile * 0.8));
-		int ey = py + (int)(a->pl.dir_y * (a->minimap.tile * 0.8));
+		int ex = cx + (int)(a->pl.dir_x * (tile * 0.8));
+		int ey = cy + (int)(a->pl.dir_y * (tile * 0.8));
 		fill_rect(&a->frame, ex - 1, ey - 1, 2, 2, 0xFFFF00);
 	}
 }
@@ -86,7 +120,7 @@ void	minimap_draw(t_app *a)
 	fill_rect(&a->frame, ox - 2, oy - 2, a->minimap.w + 4, a->minimap.h + 4, 0x000000);
 	fill_rect(&a->frame, ox, oy, a->minimap.w, a->minimap.h, 0x202020);
 
-	/* tuiles + joueur */
-	draw_tiles(a, ox, oy);
-	draw_player(a, ox, oy);
+	/* version centrée */
+	draw_tiles_centered(a, ox, oy);
+	draw_player_centered_tile(a, ox, oy);
 }
