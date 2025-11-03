@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   runtime.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 12:56:58 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/30 14:01:48 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 # include "vec2.h"
 #include <math.h>
 
-
+# define MINIMAP_TILE 8
+# define MINIMAP_W    200
+# define MINIMAP_H    200
+# define MINIMAP_MARGIN_X 10
+# define MINIMAP_MARGIN_Y 10
 
 /* Keycodes (Linux/X11) */
 #define KEY_ESC   65307
@@ -30,6 +34,14 @@
 #define KEY_LEFT  65361
 #define KEY_RIGHT 65363
 
+typedef struct s_minimap {
+	int enabled;    // 1 = affichée, 0 = off
+	int tile;       // pixels par tuile
+	int w;          // largeur de la zone minimap (en pixels)
+	int h;          // hauteur de la zone minimap (en pixels)
+	int margin_x;   // position à l'écran (offset X)
+	int margin_y;   // position à l'écran (offset Y)
+} t_minimap;
 
 typedef struct s_img {
 	void	*img;
@@ -85,6 +97,7 @@ typedef struct s_app {
 	int			key_w, key_a, key_s, key_d;
 	int			key_left, key_right;
 	t_texset	tex;
+	t_minimap  minimap;
 }	t_app;
 	
 typedef struct s_orient {
@@ -126,6 +139,6 @@ void	setup_hooks(t_app *a);
 void	init_player_from_cfg(t_app *a);
 int		run_app(t_config *cfg);
 
-
+void	minimap_draw(t_app *a); /*pour la minimap*/
 
 #endif

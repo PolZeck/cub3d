@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/28 14:47:55 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/30 14:08:43 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	on_loop(t_app *a)
 
 	update_player(a, move_speed, rot_speed);
 	render_frame(a);
+	minimap_draw(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->frame.img, 0, 0);
 	return (0);
 }

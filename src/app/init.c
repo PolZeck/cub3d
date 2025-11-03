@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:21 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/28 14:38:39 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/10/30 13:07:38 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ int	run_app(t_config *cfg)
 	a.cfg = *cfg;
 	a.win_w = 1024;
 	a.win_h = 768;
+	a.minimap.enabled  = 1;                 // active par défaut
+	a.minimap.tile     = MINIMAP_TILE;
+	a.minimap.w        = MINIMAP_W;
+	a.minimap.h        = MINIMAP_H;
+	a.minimap.margin_x = MINIMAP_MARGIN_X;
+	a.minimap.margin_y = MINIMAP_MARGIN_Y;
 	setup_colors(&a, cfg);
 	init_mlx_and_window(&a);
 	init_player_from_cfg(&a);
