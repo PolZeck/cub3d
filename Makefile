@@ -49,6 +49,7 @@ SRCS := \
 	app/textures.c \
 	app/window.c \
 	app/draw.c \
+	app/mouse.c \
 	parsing/parse_config_utils.c \
 	app/controls.c \
 	app/movements.c \
