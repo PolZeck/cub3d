@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pol <pol@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:20:16 by pol               #+#    #+#             */
-/*   Updated: 2025/11/06 13:23:42 by pol              ###   ########.fr       */
+/*   Updated: 2025/11/06 13:40:43 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "runtime.h"
 #include <math.h>
 
-static void rotate_angle(t_app *a, double angle)
+static void	rotate_angle(t_app *a, double angle)
 {
-	double old_dir_x;
-	double old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	old_dir_x = a->pl.dir_x;
 	old_plane_x = a->pl.plane_x;
@@ -26,7 +26,7 @@ static void rotate_angle(t_app *a, double angle)
 	a->pl.plane_y = old_plane_x * sin(angle) + a->pl.plane_y * cos(angle);
 }
 
-static void mouse_recenter(t_app *a)
+static void	mouse_recenter(t_app *a)
 {
 	a->mouse_warping = 1;
 	a->mouse_last_x = a->center_x;
@@ -34,7 +34,7 @@ static void mouse_recenter(t_app *a)
 	mlx_mouse_move(a->mlx, a->win, a->center_x, a->center_y);
 }
 
-void mouse_enable(t_app *a, int enable)
+void	mouse_enable(t_app *a, int enable)
 {
 	if (enable)
 	{
@@ -54,9 +54,9 @@ void mouse_enable(t_app *a, int enable)
 	}
 }
 
-int on_mouse_move(int x, int y, t_app *a)
+int	on_mouse_move(int x, int y, t_app *a)
 {
-	int dx;
+	int	dx;
 
 	(void)y;
 	if (!a->mouse_enabled)
