@@ -6,33 +6,33 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:33:12 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 14:48:07 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 14:55:27 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_H
-#define MINIMAP_H
+# define MINIMAP_H
 
-#include "cub3d.h"
+# include "cub3d.h"
 
-#define MINIMAP_TILE 8
-#define MINIMAP_W 200
-#define MINIMAP_HEIGHT 200
-#define MINIMAP_MARGIN_X 10
-#define MINIMAP_MARGIN_Y 10
+# define MINIMAP_TILE 8
+# define MINIMAP_W 200
+# define MINIMAP_HEIGHT 200
+# define MINIMAP_MARGIN_X 10
+# define MINIMAP_MARGIN_Y 10
 
-typedef struct s_app t_app ;
-typedef struct s_img t_img ;
+typedef struct s_app	t_app ;
+typedef struct s_img	t_img ;
 
 typedef struct s_minimap
 {
-	int enabled;
-	int tile;
-	int w;
-	int h;
-	int margin_x;
-	int margin_y;
-} t_minimap;
+	int	enabled;
+	int	tile;
+	int	w;
+	int	h;
+	int	margin_x;
+	int	margin_y;
+}	t_minimap;
 
 typedef struct s_rect
 {
