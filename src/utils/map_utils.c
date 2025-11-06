@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2.h                                             :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 08:23:29 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 15:54:17 by pledieu          ###   ########.fr       */
+/*   Created: 2025/11/06 15:08:44 by pledieu           #+#    #+#             */
+/*   Updated: 2025/11/06 15:39:09 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC2_H
-#define VEC2_H
+#include "runtime.h"
 
-typedef struct s_v2
+int	map_w(const t_app *a)
 {
-	double	x;
-	double	y;
-}	t_v2;
-
-static inline t_v2 v2(double x, double y)
-{
-	t_v2 r = {x, y};
-	return r;
+	return (a->cfg.map_w);
 }
-static inline t_v2 v2_add(t_v2 a, t_v2 b) { return v2(a.x + b.x, a.y + b.y); }
-static inline t_v2 v2_sub(t_v2 a, t_v2 b) { return v2(a.x - b.x, a.y - b.y); }
-static inline t_v2 v2_scale(t_v2 a, double k) { return v2(a.x * k, a.y * k); }
 
-#endif
+int	map_h(const t_app *a)
+{
+	return (a->cfg.map_h);
+}
+
+char	map_at(const t_app *a, int y, int x)
+{
+	return (a->cfg.map[y][x]);
+}

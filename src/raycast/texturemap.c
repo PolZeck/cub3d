@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 10:09:42 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 13:22:33 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:20:09 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static double	wall_hit_x(const t_app *a, const t_ray *r)
 	double	hy;
 	double	w;
 
-	hx = a->pl.pos_x + r->t * r->ray_dir_x;
-	hy = a->pl.pos_y + r->t * r->ray_dir_y;
+	hx = a->pl.pos.x + r->t * r->ray_dir.x;
+	hy = a->pl.pos.y + r->t * r->ray_dir.y;
 	if (r->side == 0)
 		w = hy - floor(hy);
 	else
@@ -33,9 +33,9 @@ static int	tex_x_from_wall(const t_ray *r, const t_img *tex, double wall_x)
 	int	tx;
 
 	tx = (int)(wall_x * (double)tex->w);
-	if (r->side == 0 && r->ray_dir_x > 0)
+	if (r->side == 0 && r->ray_dir.x > 0)
 		tx = tex->w - tx - 1;
-	if (r->side == 1 && r->ray_dir_y < 0)
+	if (r->side == 1 && r->ray_dir.y < 0)
 		tx = tex->w - tx - 1;
 	return (tx);
 }

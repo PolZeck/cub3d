@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 09:39:40 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 13:27:48 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:38:37 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 static int	is_wall(const t_app *a, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= MAP_W(a) || y >= MAP_H(a))
+	if (x < 0 || y < 0 || x >= map_w(a) || y >= map_h(a))
 		return (1);
-	return (MAP_AT(a, y, x) == '1');
+	return (map_at(a, y, x) == '1');
 }
 
 static void	update_best_hit(t_ray *r, const t_hit_update *u)
@@ -61,10 +61,10 @@ void	ray_find_first_hit(t_app *a, t_ray *r)
 	r->t = DBL_MAX;
 	r->hit = 0;
 	y = 0;
-	while (y < MAP_H(a))
+	while (y < map_h(a))
 	{
 		x = 0;
-		while (x < MAP_W(a))
+		while (x < map_w(a))
 		{
 			if (is_wall(a, x, y))
 				check_cell_hit(a, r, x, y);

@@ -63,6 +63,7 @@ SRCS := \
 	utils/free.c \
 	utils/errors.c \
 	utils/utils.c \
+	utils/map_utils.c \
 	minimap/minimap.c \
 	minimap/minimap_utils.c
 

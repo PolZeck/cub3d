@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:32:35 by lcosson           #+#    #+#             */
-/*   Updated: 2025/11/06 14:49:00 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:20:09 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void	draw_player_centered_tile(t_app *a, int offx, int offy)
 	cy = offy + a->minimap.h / 2;
 	fill_rect(&a->frame, (t_rect){cx - 2, cy - 2, 4, 4, 0xFF0000});
 	fill_rect(&a->frame, (t_rect){
-		cx + (int)(a->pl.dir_x * (tile * 0.8)) - 1,
-		cy + (int)(a->pl.dir_y * (tile * 0.8)) - 1,
+		cx + (int)(a->pl.dir.x * (tile * 0.8)) - 1,
+		cy + (int)(a->pl.dir.y * (tile * 0.8)) - 1,
 		2, 2, 0xFFFF00});
 }
 

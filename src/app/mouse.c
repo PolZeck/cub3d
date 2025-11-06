@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:20:16 by pol               #+#    #+#             */
-/*   Updated: 2025/11/06 13:40:43 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:26:25 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	rotate_angle(t_app *a, double angle)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = a->pl.dir_x;
-	old_plane_x = a->pl.plane_x;
-	a->pl.dir_x = a->pl.dir_x * cos(angle) - a->pl.dir_y * sin(angle);
-	a->pl.dir_y = old_dir_x * sin(angle) + a->pl.dir_y * cos(angle);
-	a->pl.plane_x = a->pl.plane_x * cos(angle) - a->pl.plane_y * sin(angle);
-	a->pl.plane_y = old_plane_x * sin(angle) + a->pl.plane_y * cos(angle);
+	old_dir_x = a->pl.dir.x;
+	old_plane_x = a->pl.plane.x;
+	a->pl.dir.x = a->pl.dir.x * cos(angle) - a->pl.dir.y * sin(angle);
+	a->pl.dir.y = old_dir_x * sin(angle) + a->pl.dir.y * cos(angle);
+	a->pl.plane.x = a->pl.plane.x * cos(angle) - a->pl.plane.y * sin(angle);
+	a->pl.plane.y = old_plane_x * sin(angle) + a->pl.plane.y * cos(angle);
 }
 
 static void	mouse_recenter(t_app *a)

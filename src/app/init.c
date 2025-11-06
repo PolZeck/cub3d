@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:21 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 14:37:33 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:26:25 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	setup_colors(t_app *a, t_config *cfg)
 
 static void	apply_orient(t_app *a, t_orient o)
 {
-	a->pl.dir_x = o.dx;
-	a->pl.dir_y = o.dy;
-	a->pl.plane_x = o.px;
-	a->pl.plane_y = o.py;
+	a->pl.dir.x = o.dx;
+	a->pl.dir.y = o.dy;
+	a->pl.plane.x = o.px;
+	a->pl.plane.y = o.py;
 }
 
 static void	set_dir_from_char(t_app *a, char d)
@@ -43,8 +43,8 @@ static void	set_dir_from_char(t_app *a, char d)
 
 void	init_player_from_cfg(t_app *a)
 {
-	a->pl.pos_x = a->cfg.player_x + 0.5;
-	a->pl.pos_y = a->cfg.player_y + 0.5;
+	a->pl.pos.x = a->cfg.player_x + 0.5;
+	a->pl.pos.y = a->cfg.player_y + 0.5;
 	set_dir_from_char(a, a->cfg.player_dir);
 }
 

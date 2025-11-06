@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:22:57 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 12:58:31 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:20:09 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	ray_post(t_app *a, t_ray *r)
 	double	perp;
 
 	t = r->t;
-	hx = a->pl.pos_x + t * r->ray_dir_x;
-	hy = a->pl.pos_y + t * r->ray_dir_y;
-	perp = (hx - a->pl.pos_x) * a->pl.dir.x
-		+ (hy - a->pl.pos_y) * a->pl.dir.y;
+	hx = a->pl.pos.x + t * r->ray_dir.x;
+	hy = a->pl.pos.y + t * r->ray_dir.y;
+	perp = (hx - a->pl.pos.x) * a->pl.dir.x
+		+ (hy - a->pl.pos.y) * a->pl.dir.y;
 	if (perp < 1e-6)
 		perp = 1e-6;
 	r->perp_dist = perp;
@@ -54,14 +54,14 @@ int	column_color(t_ray *r)
 	base = 0x55AAFF;
 	if (r->side == 0)
 	{
-		if (r->ray_dir_x > 0)
+		if (r->ray_dir.x > 0)
 			base = 0xFF4444;
 		else
 			base = 0x44FF44;
 	}
 	else
 	{
-		if (r->ray_dir_y > 0)
+		if (r->ray_dir.y > 0)
 			base = 0x4444FF;
 		else
 			base = 0xFFFF44;

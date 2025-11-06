@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:29:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 14:49:03 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:38:22 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	mmctx_init(t_app *a, t_mmctx *c, int offx, int offy)
 	c->offy = offy;
 	c->rad_x = c->vis_w / 2;
 	c->rad_y = c->vis_h / 2;
-	c->cx = (int)a->pl.pos_x;
-	c->cy = (int)a->pl.pos_y;
+	c->cx = (int)a->pl.pos.x;
+	c->cy = (int)a->pl.pos.y;
 }

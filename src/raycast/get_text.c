@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:39:36 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 10:24:17 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:20:09 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ const t_img	*get_tex(t_app *a, const t_ray *r)
 {
 	t_face	f;
 
-	f = pick_face(r->side, r->ray_dir_x, r->ray_dir_y);
+	f = pick_face(r->side, r->ray_dir.x, r->ray_dir.y);
 	if (f == FACE_NO)
 		return (&a->tex.no);
 	if (f == FACE_SO)

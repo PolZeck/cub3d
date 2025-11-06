@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:08:15 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 13:09:24 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:38:22 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static void	move_fb(t_app *a, double spd)
 		sign = -1.0;
 	if (!a->key_w && !a->key_s)
 		return ;
-	nx = a->pl.pos_x + a->pl.dir_x * spd * sign;
-	ny = a->pl.pos_y + a->pl.dir_y * spd * sign;
-	if (!is_wall(a, (int)nx, (int)a->pl.pos_y))
-		a->pl.pos_x = nx;
-	if (!is_wall(a, (int)a->pl.pos_x, (int)ny))
-		a->pl.pos_y = ny;
+	nx = a->pl.pos.x + a->pl.dir.x * spd * sign;
+	ny = a->pl.pos.y + a->pl.dir.y * spd * sign;
+	if (!is_wall(a, (int)nx, (int)a->pl.pos.y))
+		a->pl.pos.x = nx;
+	if (!is_wall(a, (int)a->pl.pos.x, (int)ny))
+		a->pl.pos.y = ny;
 }
 
 static void	strafe_lr(t_app *a, double spd)
@@ -52,14 +52,14 @@ static void	strafe_lr(t_app *a, double spd)
 	sign = 1.0;
 	if (a->key_a)
 		sign = -1.0;
-	perp_x = a->pl.dir_y;
-	perp_y = -a->pl.dir_x;
-	nx = a->pl.pos_x + perp_x * spd * sign;
-	ny = a->pl.pos_y + perp_y * spd * sign;
-	if (!is_wall(a, (int)nx, (int)a->pl.pos_y))
-		a->pl.pos_x = nx;
-	if (!is_wall(a, (int)a->pl.pos_x, (int)ny))
-		a->pl.pos_y = ny;
+	perp_x = a->pl.dir.y;
+	perp_y = -a->pl.dir.x;
+	nx = a->pl.pos.x + perp_x * spd * sign;
+	ny = a->pl.pos.y + perp_y * spd * sign;
+	if (!is_wall(a, (int)nx, (int)a->pl.pos.y))
+		a->pl.pos.x = nx;
+	if (!is_wall(a, (int)a->pl.pos.x, (int)ny))
+		a->pl.pos.y = ny;
 }
 
 static void	rotate_view(t_app *a, double rs)
@@ -73,12 +73,12 @@ static void	rotate_view(t_app *a, double rs)
 	angle = rs;
 	if (a->key_left)
 		angle = -rs;
-	old_dir_x = a->pl.dir_x;
-	a->pl.dir_x = a->pl.dir_x * cos(angle) - a->pl.dir_y * sin(angle);
-	a->pl.dir_y = old_dir_x * sin(angle) + a->pl.dir_y * cos(angle);
-	old_plane_x = a->pl.plane_x;
-	a->pl.plane_x = a->pl.plane_x * cos(angle) - a->pl.plane_y * sin(angle);
-	a->pl.plane_y = old_plane_x * sin(angle) + a->pl.plane_y * cos(angle);
+	old_dir_x = a->pl.dir.x;
+	a->pl.dir.x = a->pl.dir.x * cos(angle) - a->pl.dir.y * sin(angle);
+	a->pl.dir.y = old_dir_x * sin(angle) + a->pl.dir.y * cos(angle);
+	old_plane_x = a->pl.plane.x;
+	a->pl.plane.x = a->pl.plane.x * cos(angle) - a->pl.plane.y * sin(angle);
+	a->pl.plane.y = old_plane_x * sin(angle) + a->pl.plane.y * cos(angle);
 }
 
 void	update_player(t_app *a, double move_speed, double rot_speed)
