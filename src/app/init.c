@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:21 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 13:43:10 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 14:37:33 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	run_app(t_config *cfg)
 	a.minimap.enabled = 1;
 	a.minimap.tile = MINIMAP_TILE;
 	a.minimap.w = MINIMAP_W;
-	a.minimap.h = MINIMAP_H;
+	a.minimap.h = MINIMAP_HEIGHT;
 	a.minimap.margin_x = MINIMAP_MARGIN_X;
 	a.minimap.margin_y = MINIMAP_MARGIN_Y;
 	setup_colors(&a, cfg);

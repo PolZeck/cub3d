@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   runtime.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pol <pol@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 13:25:21 by pol              ###   ########.fr       */
+/*   Updated: 2025/11/06 14:36:48 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 
 #include "cub3d.h"
 #include "mlx.h"
+#include "minimap.h"
 #include "raycast.h"
 #include "vec2.h"
 #include <math.h>
-
-#define MINIMAP_TILE 8
-#define MINIMAP_W 200
-#define MINIMAP_H 200
-#define MINIMAP_MARGIN_X 10
-#define MINIMAP_MARGIN_Y 10
 
 #define EVT_MOTION 6
 #define MSK_MOTION (1L << 6)
@@ -43,15 +38,7 @@
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
 
-typedef struct s_minimap
-{
-	int enabled;
-	int tile;
-	int w;
-	int h;
-	int margin_x;
-	int margin_y;
-} t_minimap;
+typedef struct s_minimap t_minimap;
 
 typedef struct s_img
 {
@@ -161,6 +148,5 @@ int run_app(t_config *cfg);
 int on_mouse_move(int x, int y, t_app *a);
 void mouse_enable(t_app *a, int enable);
 
-void minimap_draw(t_app *a);
 
 #endif

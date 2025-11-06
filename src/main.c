@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:01:14 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 07:27:10 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 14:47:32 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "runtime.h"
 #include <unistd.h>
 
-//debug function
+// debug function
 // void	print_map_debug(const t_config *cfg, int show_spaces)
 // {
 // 	for (int y = 0; y < cfg->map_h; ++y)
