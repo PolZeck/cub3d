@@ -65,7 +65,8 @@ SRCS := \
 	utils/utils.c \
 	utils/map_utils.c \
 	minimap/minimap.c \
-	minimap/minimap_utils.c
+	minimap/minimap_utils.c \
+	math/vec2.c
 
 SRCS_BONUS :=
 

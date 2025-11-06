@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 15:53:42 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 16:00:33 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define EVT_MOTION 6
-# define MSK_MOTION (1L << 6)
+# define MSK_MOTION 64L
 # define KEY_ALT_L 65513
 # define KEY_ALT_R 65514
 # define KEY_ESC 65307

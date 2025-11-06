@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:23:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 15:34:13 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/06 16:00:07 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ void	ray_prepare_intersection(t_app *a, t_ray *r)
 		r->sdist.y = (r->map_y + 1.0 - a->pl.pos.y) * r->delta.y;
 	}
 }
-
