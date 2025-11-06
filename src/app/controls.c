@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pol <pol@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:04:31 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 12:45:11 by pol              ###   ########.fr       */
+/*   Updated: 2025/11/06 13:42:04 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "runtime.h"
 #include <math.h>
 
-int on_key_down(int key, t_app *a)
+int	on_key_down(int key, t_app *a)
 {
 	if (key == KEY_ESC)
 		return (on_close(a));
@@ -34,7 +34,7 @@ int on_key_down(int key, t_app *a)
 	return (0);
 }
 
-int on_key_up(int key, t_app *a)
+int	on_key_up(int key, t_app *a)
 {
 	if (key == KEY_W)
 		a->key_w = 0;
