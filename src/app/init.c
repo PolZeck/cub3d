@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:21 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 15:26:25 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/10 17:16:51 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	run_app(t_config *cfg)
 	a.minimap.margin_x = MINIMAP_MARGIN_X;
 	a.minimap.margin_y = MINIMAP_MARGIN_Y;
 	setup_colors(&a, cfg);
-	init_mlx_and_window(&a);
+	init_mlx_and_window(&a, cfg);
 	init_player_from_cfg(&a);
 	load_textures(&a);
 	setup_hooks(&a);

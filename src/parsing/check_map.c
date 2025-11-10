@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 15:38:22 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/10 17:25:21 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static void	check_map_line(t_config *cfg, int y, int *players)
 	{
 		c = cfg->map[y][x];
 		if (!is_valid_map_char(c))
+		{
+			free_config(cfg);
 			error_exit("Error\nInvalid char in map");
+		}
 		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			handle_player_char(cfg, x, y, players);
 		x++;
@@ -58,6 +61,7 @@ int	check_map_chars_and_player(t_config *cfg)
 	}
 	if (players != 1)
 	{
+		free_config(cfg);
 		if (players == 0)
 			error_exit("Error\nMissing player");
 		else
@@ -71,6 +75,9 @@ int	validate_config(t_config *cfg)
 	if (!check_map_chars_and_player(cfg))
 		return (0);
 	if (!check_map_closed(cfg))
+	{
+		free_config(cfg);
 		error_exit("Error\nMap not closed");
+	}
 	return (1);
 }

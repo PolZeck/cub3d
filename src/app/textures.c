@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 10:06:57 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/26 12:56:08 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/10 17:10:26 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static int	load_xpm(t_app *a, const char *path, t_img *out)
 int	load_textures(t_app *a)
 {
 	if (!load_xpm(a, a->cfg.tx.no, &a->tex.no))
-		error_exit("Error\nNO texture load");
+		error_exit_app("Error\nNO texture load", a);
 	if (!load_xpm(a, a->cfg.tx.so, &a->tex.so))
-		error_exit("Error\nSO texture load");
+		error_exit_app("Error\nSO texture load", a);
 	if (!load_xpm(a, a->cfg.tx.we, &a->tex.we))
-		error_exit("Error\nWE texture load");
+		error_exit_app("Error\nWE texture load", a);
 	if (!load_xpm(a, a->cfg.tx.ea, &a->tex.ea))
-		error_exit("Error\nEA texture load");
+		error_exit_app("Error\nEA texture load", a);
 	return (1);
 }
 

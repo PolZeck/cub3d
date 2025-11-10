@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 16:00:33 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/10 17:16:07 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int		rgb24(int r, int g, int b);
 void	put_px(t_img *img, int x, int y, int color);
 void	fill_half_screens(t_app *a);
 void	new_frame(t_app *a, int w, int h);
-void	init_mlx_and_window(t_app *a);
+void	init_mlx_and_window(t_app *a, t_config *cfg);
 void	setup_hooks(t_app *a);
 void	init_player_from_cfg(t_app *a);
 int		run_app(t_config *cfg);
