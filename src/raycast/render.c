@@ -6,13 +6,26 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:23:09 by pledieu           #+#    #+#             */
-/*   Updated: 2025/10/27 10:24:29 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 13:40:41 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "runtime.h"
 #include "raycast.h"
 
+/**
+ * @brief Render a full frame using the raycasting pipeline.
+ *
+ * This function performs one complete rendering pass of the 3D scene.
+ * It first fills the background (ceiling and floor), then iterates over
+ * each vertical screen column. For each column, it initializes a ray,
+ * computes intersections, determines wall height, selects the texture,
+ * and draws the textured column to the frame buffer.
+ *
+ * @param a Pointer to the application context (contains player, map,
+ *          textures, and frame buffer).
+ * @return Always returns 0 (required by MLX loop hook convention).
+ */
 int	render_frame(t_app *a)
 {
 	int		x;

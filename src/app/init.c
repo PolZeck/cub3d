@@ -6,18 +6,36 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:21 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/10 17:16:51 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 13:43:43 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "runtime.h"
 
+/**
+ * @brief Convert RGB values from config to 24-bit colors.
+ *
+ * Initializes ceiling and floor colors in the application structure
+ * based on the RGB triplets provided in the configuration file.
+ *
+ * @param a   Pointer to the application context.
+ * @param cfg Pointer to the loaded configuration data.
+ */
 static void	setup_colors(t_app *a, t_config *cfg)
 {
 	a->ceil_color = rgb24(cfg->ceiling.r, cfg->ceiling.g, cfg->ceiling.b);
 	a->floor_color = rgb24(cfg->floor.r, cfg->floor.g, cfg->floor.b);
 }
 
+/**
+ * @brief Apply orientation data to initialize the player's direction.
+ *
+ * Sets the player's direction and camera plane based on the provided
+ * orientation structure, which defines both direction and FOV plane.
+ *
+ * @param a Pointer to the application context.
+ * @param o Orientation structure (dir.x, dir.y, plane.x, plane.y).
+ */
 static void	apply_orient(t_app *a, t_orient o)
 {
 	a->pl.dir.x = o.dx;
@@ -26,6 +44,15 @@ static void	apply_orient(t_app *a, t_orient o)
 	a->pl.plane.y = o.py;
 }
 
+/**
+ * @brief Determine initial player orientation from direction character.
+ *
+ * Sets player direction and camera plane vectors depending on whether
+ * the player starts facing North, South, East, or West.
+ *
+ * @param a Pointer to the application context.
+ * @param d Direction character ('N', 'S', 'E', or 'W').
+ */
 static void	set_dir_from_char(t_app *a, char d)
 {
 	t_orient	o;
@@ -41,6 +68,15 @@ static void	set_dir_from_char(t_app *a, char d)
 	apply_orient(a, o);
 }
 
+/**
+ * @brief Initialize player position and facing direction from config.
+ *
+ * Converts player map coordinates to world-space coordinates (adding
+ * 0.5 offset to center the player in a tile) and sets the correct
+ * facing direction.
+ *
+ * @param a Pointer to the application context.
+ */
 void	init_player_from_cfg(t_app *a)
 {
 	a->pl.pos.x = a->cfg.player_x + 0.5;
@@ -48,6 +84,17 @@ void	init_player_from_cfg(t_app *a)
 	set_dir_from_char(a, a->cfg.player_dir);
 }
 
+/**
+ * @brief Main entry point for running the game application.
+ *
+ * Initializes the application structure, loads configuration, sets
+ * up the MLX context, initializes the player and textures, and starts
+ * the main rendering loop. This is the highest-level function called
+ * after parsing the configuration file.
+ *
+ * @param cfg Pointer to the parsed configuration structure.
+ * @return Always returns 0 (normal program termination).
+ */
 int	run_app(t_config *cfg)
 {
 	t_app	a;
