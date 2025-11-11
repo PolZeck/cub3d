@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/10 17:25:05 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 10:43:35 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	in_map_step(t_config *cfg, t_pstate *st)
 		append_or_die(st, st->line);
 		return ;
 	}
-	if (st->seen_blank_after_map)
+	if (!st->seen_blank_after_map)
 	{
+		free_pstate(st);
 		free(st->line);
-		close(st->fd);
+		free_config(cfg);
 		error_exit("Error\nNon-empty line after map");
 	}
 	append_or_die(st, st->line);

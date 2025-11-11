@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:53 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/10 17:02:52 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 10:44:14 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,26 @@ void	free_config(t_config *cfg)
 		}
 		free(cfg->map);
 	}
+}
+
+void	free_pstate(t_pstate *st)
+{
+	int	i;
+
+	if (!st)
+		return ;
+	free(st->line);
+	st->line = NULL;
+	if (st->raw)
+	{
+		i = 0;
+		while (i < st->n)
+			free(st->raw[i++]);
+		free(st->raw);
+		st->raw = NULL;
+	}
+	st->n = 0;
+	if (st->fd >= 0)
+		close(st->fd);
+	st->fd = -1;
 }

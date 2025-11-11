@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/10 17:23:33 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 10:44:21 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ int		copy_rows_or_fail(t_config *cfg, char **raw, int h, int w);
 void	free_raw_vec(char **raw, int h);
 int		check_map_closed(const t_config *cfg);
 void	error_exit_app(const char *msg, t_app *app);
+void	free_pstate(t_pstate *st);
 
 #endif
