@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:32:35 by lcosson           #+#    #+#             */
-/*   Updated: 2025/11/06 15:20:09 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 13:32:23 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "runtime.h"
 
+/**
+ * @brief Draws the visible minimap tiles centered around the player.
+ * 
+ * This function initializes a minimap context and iterates vertically
+ * through the visible range to draw each row of tiles using `minimap_draw_row`.
+ * The map is centered on the player's position.
+ * 
+ * @param a Pointer to the main application structure.
+ * @param offx Horizontal offset (top-left corner of the minimap on screen).
+ * @param offy Vertical offset (top-left corner of the minimap on screen).
+ */
 static void	draw_tiles_centered(t_app *a, int offx, int offy)
 {
 	t_mmctx	c;
@@ -29,6 +40,16 @@ static void	draw_tiles_centered(t_app *a, int offx, int offy)
 	}
 }
 
+/**
+ * @brief Draws the player's position and direction on the minimap.
+ * 
+ * This function displays the player as a red square at the center of the
+ * minimap and a small yellow square indicating their facing direction.
+ * 
+ * @param a Pointer to the main application structure.
+ * @param offx Horizontal offset (top-left corner of the minimap on screen).
+ * @param offy Vertical offset (top-left corner of the minimap on screen).
+ */
 static void	draw_player_centered_tile(t_app *a, int offx, int offy)
 {
 	int	tile;
@@ -47,6 +68,15 @@ static void	draw_player_centered_tile(t_app *a, int offx, int offy)
 		2, 2, 0xFFFF00});
 }
 
+/**
+ * @brief Renders the entire minimap, including background, tiles, and player.
+ * 
+ * This function draws the minimap border, background, visible map tiles,
+ * and the player's position with direction. It only executes if the minimap
+ * is enabled in the application's settings.
+ * 
+ * @param a Pointer to the main application structure.
+ */
 void	minimap_draw(t_app *a)
 {
 	const int	ox = a->minimap.margin_x;

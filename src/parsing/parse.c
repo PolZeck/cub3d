@@ -6,12 +6,24 @@
 /*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 11:32:30 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/11 13:37:18 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Processes a line belonging to the map section during parsing.
+ * 
+ * This function handles each line after the map section has started.
+ * - If the line is blank, it marks that a blank line was seen and stores it.
+ * - If a non-empty line appears after a blank one, it triggers an error,
+ *   since maps cannot contain non-contiguous sections.
+ * - Otherwise, it simply appends the line to the raw map data.
+ * 
+ * @param cfg Pointer to the configuration structure.
+ * @param st Pointer to the parsing state structure.
+ */
 void	in_map_step(t_config *cfg, t_pstate *st)
 {
 	char	*p;
@@ -34,6 +46,25 @@ void	in_map_step(t_config *cfg, t_pstate *st)
 	append_or_die(st, st->line, cfg);
 }
 
+/**
+ * @brief Parses a header line and dispatches it to the appropriate handler.
+ * 
+ * This function identifies the type of header line based on its prefix
+ * and calls the corresponding parsing function:
+ * 
+ * - `"NO"` → North texture path  
+ * - `"SO"` → South texture path  
+ * - `"WE"` → West texture path  
+ * - `"EA"` → East texture path  
+ * - `"F"`  → Floor color  
+ * - `"C"`  → Ceiling color  
+ * 
+ * Any unrecognized line returns 0 to indicate a parsing failure.
+ * 
+ * @param cfg Pointer to the configuration structure.
+ * @param line The line to parse.
+ * @return 1 if a valid header was parsed, 0 otherwise.
+ */
 int	parse_line_header(t_config *cfg, const char *line)
 {
 	const char	*ptr;
@@ -54,6 +85,24 @@ int	parse_line_header(t_config *cfg, const char *line)
 	return (0);
 }
 
+/**
+ * @brief Parses an entire `.cub` configuration file.
+ * 
+ * This function orchestrates the parsing of a `.cub` configuration file.
+ * It initializes parsing structures, opens the target file, and reads it
+ * line by line. Depending on the parsing state, each line is processed as
+ * either a header or a map entry.
+ * 
+ * Once the file has been fully read, the configuration is finalized with
+ * `finalize_config()` to verify completeness and consistency.
+ * 
+ * On any error (e.g., missing headers, invalid map, allocation failure),
+ * the function terminates execution with an error message.
+ * 
+ * @param path Path to the `.cub` configuration file.
+ * @param cfg Pointer to the configuration structure to fill.
+ * @return 1 if parsing succeeds, does not return on fatal errors.
+ */
 int	parse_config(const char *path, t_config *cfg)
 {
 	t_pstate	st;
