@@ -1,6 +1,6 @@
 NO ./textures/cobblestone.xpm
 SO ./textures/cobblestone_01.xpm
-WE ./textures/mossy_cobblestone1.xpm
+WE ./textures/mossy_cobblestone1.xpmm
 EA ./textures/cobblestone_02.xpm
 
 F 76,76,76

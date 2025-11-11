@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:42 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/10 17:07:57 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 13:54:24 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	error_exit(const char *msg)
 
 void	error_exit_app(const char *msg, t_app *app)
 {
-	on_close(app);
 	if (msg)
 		ft_putendl_fd((char *)msg, 2);
+	on_close(app);
 	exit(EXIT_FAILURE);
 }
