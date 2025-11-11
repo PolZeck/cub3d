@@ -6,13 +6,24 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 10:09:42 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/06 15:20:09 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 13:41:19 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "runtime.h"
 #include "raycast.h"
 
+/**
+ * @brief Compute the fractional hit position on the wall.
+ *
+ * Determines how far along the wall the ray has hit, expressed as
+ * a fraction in [0, 1). This is used to find the corresponding
+ * horizontal coordinate within the texture.
+ *
+ * @param a Application context (player position).
+ * @param r Ray data containing hit distance and side.
+ * @return Fractional wall coordinate (0.0–1.0) for texture mapping.
+ */
 static double	wall_hit_x(const t_app *a, const t_ray *r)
 {
 	double	hx;
@@ -28,6 +39,17 @@ static double	wall_hit_x(const t_app *a, const t_ray *r)
 	return (w);
 }
 
+/**
+ * @brief Convert a fractional wall hit coordinate to a texture X index.
+ *
+ * Maps the wall hit fraction to the texture width and handles horizontal
+ * flipping depending on the wall orientation and ray direction.
+ *
+ * @param r   Ray data (direction and side of hit).
+ * @param tex Texture image of the hit wall.
+ * @param wall_x Fractional hit position on the wall [0..1].
+ * @return Texture X coordinate (column index) within the texture image.
+ */
 static int	tex_x_from_wall(const t_ray *r, const t_img *tex, double wall_x)
 {
 	int	tx;
@@ -40,6 +62,18 @@ static int	tex_x_from_wall(const t_ray *r, const t_img *tex, double wall_x)
 	return (tx);
 }
 
+/**
+ * @brief Initialize the vertical span and texture position for drawing.
+ *
+ * Calculates the start and end pixel positions on the screen and aligns
+ * the initial texture position accordingly. Handles vertical clipping if
+ * the wall slice extends beyond the screen bounds.
+ *
+ * @param a     Application context (for frame height).
+ * @param r     Ray with projected draw range and line height.
+ * @param step  Texture sampling step per screen pixel.
+ * @param sp    Span data structure to fill (start, end, tex_pos).
+ */
 static void	span_init(const t_app *a, const t_ray *r, double step, t_span *sp)
 {
 	sp->y0 = r->draw_start;
@@ -54,6 +88,18 @@ static void	span_init(const t_app *a, const t_ray *r, double step, t_span *sp)
 		sp->y1 = a->frame.h - 1;
 }
 
+/**
+ * @brief Render a vertical span of wall texture onto the frame buffer.
+ *
+ * Iterates through all screen pixels in the span, samples the correct
+ * texel from the wall texture, applies a side shading for lighting, and
+ * writes the resulting color into the frame image buffer.
+ *
+ * @param a  Application context (for frame buffer access).
+ * @param x  Screen X coordinate of the column being drawn.
+ * @param sp Span data (y range, texture position).
+ * @param dc Drawing context (texture, step, side info).
+ */
 static void	blit_span(t_app *a, int x, t_span *sp, t_drawctx *dc)
 {
 	int	y;
@@ -77,6 +123,17 @@ static void	blit_span(t_app *a, int x, t_span *sp, t_drawctx *dc)
 	}
 }
 
+/**
+ * @brief Draw one textured vertical column of the wall on the screen.
+ *
+ * Determines which texture to use based on the ray hit, computes the
+ * corresponding horizontal texture coordinate, and renders the wall
+ * column with perspective-correct sampling.
+ *
+ * @param a Application context (textures, frame buffer, player state).
+ * @param x Screen column index (current ray index).
+ * @param r Ray information (hit distance, side, line height, etc.).
+ */
 void	draw_tex_column(t_app *a, int x, const t_ray *r)
 {
 	t_drawctx	dc;

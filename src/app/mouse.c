@@ -6,13 +6,23 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:20:16 by pol               #+#    #+#             */
-/*   Updated: 2025/11/06 15:26:25 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 13:44:10 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "runtime.h"
 #include <math.h>
 
+/**
+ * @brief Rotate the player's view by a given angle.
+ *
+ * Rotates both the direction and camera plane vectors using a 2D
+ * rotation matrix. This function preserves the vector lengths and
+ * ensures the FOV remains constant during mouse movement.
+ *
+ * @param a      Pointer to the application context.
+ * @param angle  Rotation angle in radians (positive = right turn).
+ */
 static void	rotate_angle(t_app *a, double angle)
 {
 	double	old_dir_x;
@@ -26,6 +36,14 @@ static void	rotate_angle(t_app *a, double angle)
 	a->pl.plane.y = old_plane_x * sin(angle) + a->pl.plane.y * cos(angle);
 }
 
+/**
+ * @brief Center the mouse cursor back to the screen midpoint.
+ *
+ * Updates the internal mouse state to mark the cursor as recentered
+ * and calls the MLX function to move it to the window center.
+ *
+ * @param a Pointer to the application context.
+ */
 static void	mouse_recenter(t_app *a)
 {
 	a->mouse_warping = 1;
@@ -34,6 +52,16 @@ static void	mouse_recenter(t_app *a)
 	mlx_mouse_move(a->mlx, a->win, a->center_x, a->center_y);
 }
 
+/**
+ * @brief Enable or disable mouse-based camera control.
+ *
+ * When enabled, the mouse is hidden and locked to the window center.
+ * When disabled, the cursor is released and visible. Used to toggle
+ * between free mouse mode and FPS-style look control.
+ *
+ * @param a       Pointer to the application context.
+ * @param enable  1 to enable mouse control, 0 to disable.
+ */
 void	mouse_enable(t_app *a, int enable)
 {
 	if (enable)
@@ -54,6 +82,18 @@ void	mouse_enable(t_app *a, int enable)
 	}
 }
 
+/**
+ * @brief Handle mouse movement for camera rotation.
+ *
+ * Detects horizontal mouse displacement and converts it into a
+ * rotation of the player's view. The mouse is continuously reset
+ * to the window center after movement to simulate infinite rotation.
+ *
+ * @param x Current mouse X position.
+ * @param y Current mouse Y position (unused).
+ * @param a Pointer to the application context.
+ * @return Always returns 0 (MLX event callback convention).
+ */
 int	on_mouse_move(int x, int y, t_app *a)
 {
 	int	dx;
