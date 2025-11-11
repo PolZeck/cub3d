@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 10:43:35 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 11:07:18 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	in_map_step(t_config *cfg, t_pstate *st)
 		append_or_die(st, st->line);
 		return ;
 	}
-	if (!st->seen_blank_after_map)
+	if (st->seen_blank_after_map)
 	{
 		free_pstate(st);
 		free(st->line);
@@ -32,33 +32,6 @@ void	in_map_step(t_config *cfg, t_pstate *st)
 		error_exit("Error\nNon-empty line after map");
 	}
 	append_or_die(st, st->line);
-}
-
-static void	trim_trailing_blank_lines(t_pstate *st,
-			int (*is_blank)(const char *))
-{
-	while (st->n > 0 && is_blank(st->raw[st->n - 1]))
-	{
-		free(st->raw[st->n - 1]);
-		st->n--;
-	}
-}
-
-void	finalize_config(t_config *cfg, t_pstate *st,
-			int (*is_blank)(const char *))
-{
-	close(st->fd);
-	if (!st->in_map)
-		error_exit("Error\nMissing map at end of file");
-	if (!check_required_headers(cfg))
-		error_exit("Error\nMissing/duplicate headers");
-	trim_trailing_blank_lines(st, is_blank);
-	if (st->n == 0)
-		error_exit("Error\nEmpty map");
-	if (!normalize_map(cfg, st->raw, st->n))
-		error_exit("Error\nMap normalization failed");
-	if (!validate_config(cfg))
-		error_exit("Error\nInvalid configuration");
 }
 
 int	parse_line_header(t_config *cfg, const char *line)
