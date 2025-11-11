@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 11:07:18 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 11:32:30 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	in_map_step(t_config *cfg, t_pstate *st)
 	if (*p == '\0')
 	{
 		st->seen_blank_after_map = true;
-		append_or_die(st, st->line);
+		append_or_die(st, st->line, cfg);
 		return ;
 	}
 	if (st->seen_blank_after_map)
@@ -31,7 +31,7 @@ void	in_map_step(t_config *cfg, t_pstate *st)
 		free_config(cfg);
 		error_exit("Error\nNon-empty line after map");
 	}
-	append_or_die(st, st->line);
+	append_or_die(st, st->line, cfg);
 }
 
 int	parse_line_header(t_config *cfg, const char *line)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 10:44:21 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 11:32:12 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	finalize_config(t_config *cfg, t_pstate *st,
 char	*skip_spaces(const char *s);
 int		is_only_spaces(const char *s);
 int		is_header_line(const char *line);
-void	append_or_die(t_pstate *st, char *line);
+void	append_or_die(t_pstate *st, char *line, t_config *cfg);
 int		alloc_map_rows(t_config *cfg, int h);
 int		copy_rows_or_fail(t_config *cfg, char **raw, int h, int w);
 void	free_raw_vec(char **raw, int h);

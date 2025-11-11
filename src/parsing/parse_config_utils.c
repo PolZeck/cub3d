@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 18:07:05 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 11:18:05 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 11:33:53 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ void	strip_eol(char *line)
 	}
 }
 
-void	append_or_die(t_pstate *st, char *line)
+void	append_or_die(t_pstate *st, char *line, t_config *cfg)
 {
 	if (parse_map_collect(&st->raw, &st->n, &st->cap, line))
 		return ;
 	close(st->fd);
-	free_pstate(st);
+	free(st->line);
+	free(st->raw);
+	free_config(cfg);
 	error_exit("Error\nAlloc failure");
 }
 
@@ -75,5 +77,5 @@ void	before_map_step(t_config *cfg, t_pstate *st,
 		return ;
 	}
 	st->in_map = true;
-	append_or_die(st, st->line);
+	append_or_die(st, st->line, cfg);
 }
