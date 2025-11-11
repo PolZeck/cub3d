@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 18:07:05 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 10:36:56 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/11 11:18:05 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	strip_eol(char *line)
 
 void	append_or_die(t_pstate *st, char *line)
 {
-	if (!parse_map_collect(&st->raw, &st->n, &st->cap, line))
-	{
-		close(st->fd);
-		error_exit("Error\nAlloc failure");
-	}
+	if (parse_map_collect(&st->raw, &st->n, &st->cap, line))
+		return ;
+	close(st->fd);
+	free_pstate(st);
+	error_exit("Error\nAlloc failure");
 }
 
 void	before_map_step(t_config *cfg, t_pstate *st,
@@ -67,6 +67,7 @@ void	before_map_step(t_config *cfg, t_pstate *st,
 		if (!parse_hdr(cfg, p))
 		{
 			free(st->line);
+			free_config(cfg);
 			close(st->fd);
 			error_exit("Error\nInvalid header line");
 		}
