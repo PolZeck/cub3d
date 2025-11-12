@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:50:56 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/10 10:22:30 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/12 08:11:07 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,9 @@ typedef struct s_hit_update
 	int		side;
 }	t_hit_update;
 
-int				render_frame(t_app *a);
 void			ray_find_first_hit(t_app *a, t_ray *r);
 void			ray_post(t_app *a, t_ray *r);
 int				column_color(t_ray *r);
-void			ray_prepare_intersection(t_app *a, t_ray *r);
 void			ray_init(t_app *a, t_ray *r, int x);
 int				render_frame(t_app *a);
 void			draw_tex_column(t_app *a, int x, const t_ray *r);
