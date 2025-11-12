@@ -41,38 +41,3 @@ void	ray_init(t_app *a, t_ray *r, int x)
 		r->delta.y = fabs(1.0 / r->ray_dir.y);
 	r->hit = 0;
 }
-
-/**
- * @brief Prepare initial side distances and step directions for DDA.
- *
- * Based on the ray direction components, computes the step (+1/-1) on
- * each axis and the initial side distances (sdist) from the player to
- * the first vertical/horizontal grid line. These values are used by a
- * classic DDA walk or for compatible intersection logic.
- *
- * @param a Application context (player position).
- * @param r Ray structure with ray_dir, map cell, and delta filled.
- */
-void	ray_prepare_intersection(t_app *a, t_ray *r)
-{
-	if (r->ray_dir.x < 0)
-	{
-		r->step_x = -1;
-		r->sdist.x = (a->pl.pos.x - r->map_x) * r->delta.x;
-	}
-	else
-	{
-		r->step_x = 1;
-		r->sdist.x = (r->map_x + 1.0 - a->pl.pos.x) * r->delta.x;
-	}
-	if (r->ray_dir.y < 0)
-	{
-		r->step_y = -1;
-		r->sdist.y = (a->pl.pos.y - r->map_y) * r->delta.y;
-	}
-	else
-	{
-		r->step_y = 1;
-		r->sdist.y = (r->map_y + 1.0 - a->pl.pos.y) * r->delta.y;
-	}
-}

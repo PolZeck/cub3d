@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:23:09 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:40:41 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/12 08:06:52 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	render_frame(t_app *a)
 	while (x < a->frame.w)
 	{
 		ray_init(a, &r, x);
-		ray_prepare_intersection(a, &r);
 		ray_find_first_hit(a, &r);
 		ray_post(a, &r);
 		draw_tex_column(a, x, &r);
