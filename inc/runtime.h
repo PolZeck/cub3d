@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/10 17:16:07 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/12 08:12:33 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,12 +127,10 @@ typedef enum e_face
 int		load_textures(t_app *a);
 void	destroy_textures(t_app *a);
 int		texel_at(const t_img *tex, int u, int v);
-int		run_app(t_config *cfg);
 int		on_close(t_app *a);
 int		on_key_down(int keycode, t_app *a);
 int		on_key_up(int keycode, t_app *a);
 int		on_loop(t_app *a);
-void	init_player_from_cfg(t_app *a);
 void	update_player(t_app *a, double move_speed, double rot_speed);
 int		rgb24(int r, int g, int b);
 void	put_px(t_img *img, int x, int y, int color);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 11:32:12 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/12 08:13:38 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,12 @@ int		parse_line_header(t_config *cfg, const char *line);
 int		parse_texture_line(t_textures *tx, const char *id, const char *rest);
 int		parse_color_line(t_rgb *out, const char *rest);
 int		parse_map_collect(char ***lines_vec, int *size, int *cap, char *line);
-int		normalize_map(t_config *cfg, char **raw_lines, int nlines);
 int		validate_config(t_config *cfg);
 void	error_exit(const char *msg);
 void	free_split(char **tab);
 void	free_config(t_config *cfg);
 int		check_required_headers(const t_config *cfg);
 int		check_map_chars_and_player(t_config *cfg);
-int		check_map_closed(const t_config *cfg);
 int		ft_max(int a, int b);
 int		normalize_map(t_config *cfg, char **raw, int n);
 void	init_pstate(t_pstate *st);
