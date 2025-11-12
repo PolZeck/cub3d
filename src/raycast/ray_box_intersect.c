@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:47:06 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:32:01 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/12 10:51:49 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ static void	axis_t(const t_axis_in *in, t_axis_out *out)
  */
 static int	resolve_hit(const t_hit_in *in, t_hit_out *out)
 {
-	double	tenter;
-	double	texit;
+	double	t_enter;
+	double	t_exit;
 
-	tenter = fmax(in->tminx, in->tminy);
-	texit = fmin(in->tmaxx, in->tmaxy);
-	if (texit >= tenter && texit > 0.0)
+	t_enter = fmax(in->tminx, in->tminy);
+	t_exit = fmin(in->tmaxx, in->tmaxy);
+	if (t_exit >= t_enter && t_exit > 0.0)
 	{
-		out->t_enter = tenter;
+		out->t_enter = t_enter;
 		if (in->tminx > in->tminy)
 			out->side = 0;
 		else
