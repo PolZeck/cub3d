@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:21 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:43:43 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/12 09:36:52 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int	run_app(t_config *cfg)
 	a.center_x = a.win_w / 2;
 	a.center_y = a.win_h / 2;
 	a.cfg = *cfg;
-	a.win_w = 1024;
-	a.win_h = 768;
+	a.win_w = 1280;
+	a.win_h = 960;
 	a.minimap.enabled = 1;
 	a.minimap.tile = MINIMAP_TILE;
 	a.minimap.w = MINIMAP_W;

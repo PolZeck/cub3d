@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:29:47 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:32:16 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/12 09:15:19 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	minimap_draw_row(t_app *a, t_mmctx *c, int y, int dest_y)
 	int	x;
 
 	dx = -c->rad_x;
-	while (dx < c->rad_x)
+	while (dx <= c->rad_x)
 	{
 		x = c->cx + dx;
 		dest_x = c->offx + (dx + c->rad_x) * c->tile;

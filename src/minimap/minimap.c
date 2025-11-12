@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:32:35 by lcosson           #+#    #+#             */
-/*   Updated: 2025/11/11 13:32:23 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/12 09:15:10 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	draw_tiles_centered(t_app *a, int offx, int offy)
 	if (c.tile <= 0 || c.vis_w <= 0 || c.vis_h <= 0)
 		return ;
 	dy = -c.rad_y;
-	while (dy < c.rad_y)
+	while (dy <= c.rad_y)
 	{
 		minimap_draw_row(a, &c,
 			c.cy + dy, c.offy + (dy + c.rad_y) * c.tile);

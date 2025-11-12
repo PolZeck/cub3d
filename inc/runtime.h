@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:24:23 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/12 08:12:33 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/12 09:34:00 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,8 @@ typedef struct s_ray
 {
 	double	camera_x;
 	t_v2	ray_dir;
-	t_v2	delta;
-	t_v2	sdist;
 	int		map_x;
 	int		map_y;
-	int		step_x;
-	int		step_y;
 	int		hit;
 	int		side;
 	double	t;
