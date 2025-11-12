@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:26:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:43:15 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/12 07:09:17 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	setup_hooks(t_app *a)
 int	on_loop(t_app *a)
 {
 	const double	move_speed = 0.05;
-	const double	rot_speed = 0.12;
+	const double	rot_speed = 0.05;
 
 	update_player(a, move_speed, rot_speed);
 	render_frame(a);
