@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normalize_map_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 18:26:42 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:40:03 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/17 11:08:45 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	free_raw_vec(char **raw, int h)
  */
 int	alloc_map_rows(t_config *cfg, int h)
 {
+	(void) h;
+	
 	cfg->map = malloc(sizeof(char *) * (h + 1));
 	if (!cfg->map)
 		return (0);
@@ -81,7 +83,7 @@ static void	cleanup_alloc_fail(t_config *cfg, char **raw, int h, int upto)
 		free(cfg->map[i]);
 		i++;
 	}
-	free(cfg->map);
+	// free(cfg->map);
 	free_raw_vec(raw, h);
 }
 
