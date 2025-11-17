@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_text.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:39:36 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:27:39 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/17 11:34:16 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ static t_face	pick_face(int side, double rdx, double rdy)
 	if (side == 0)
 	{
 		if (rdx > 0)
-			return (FACE_EA);
-		return (FACE_WE);
+			return (FACE_WE);
+		return (FACE_EA);
 	}
-	if (rdy > 0)
+	else
+	{
+		if (rdy > 0)
+			return (FACE_NO);
 		return (FACE_SO);
-	return (FACE_NO);
+	}
 }
 
 /**
