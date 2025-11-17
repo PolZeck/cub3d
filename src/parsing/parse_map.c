@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:00 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/17 11:14:55 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/17 11:31:13 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,11 @@ static int	expand_vec(char ***vec, int *cap, int n, char *line)
 	char	**tmp;
 	int		i;
 
+	(void)line;
 	newcap = (*cap) * 2;
 	tmp = malloc(sizeof(char *) * newcap);
-		// tmp = NULL;
 	if (!tmp)
-	{
-		free(line);
 		return (0);
-	}
 	i = 0;
 	while (i < n)
 	{
@@ -76,10 +73,7 @@ int	parse_map_collect(char ***vec, int *n, int *cap, char *line)
 		*cap = 16;
 		*vec = malloc(sizeof(char *) * (*cap));
 		if (!*vec)
-		{
-			free(line);
 			return (0);
-		}
 	}
 	if (*n >= *cap && !expand_vec(vec, cap, *n, line))
 		return (0);
@@ -121,9 +115,8 @@ int	normalize_map(t_config *cfg, char **raw, int n)
 		return (0);
 	}
 	if (!copy_rows_or_fail(cfg, raw, h, w))
-	{
 		return (0);
-	}	cfg->map_h = h;
+	cfg->map_h = h;
 	cfg->map_w = w;
 	return (1);
 }
