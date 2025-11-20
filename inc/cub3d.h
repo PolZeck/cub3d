@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/12 08:13:38 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/20 15:41:22 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_config
 	int			player_x;
 	int			player_y;
 	char		player_dir;
+	bool		seen_floor;
+	bool		seen_ceiling;
 }	t_config;
 
 int		parse_config(const char *path, t_config *cfg);

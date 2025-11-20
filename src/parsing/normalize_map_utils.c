@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 18:26:42 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/17 11:32:01 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/20 15:41:34 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,12 @@ static void	cleanup_alloc_fail(t_config *cfg, char **raw, int h, int upto)
 
 	i = 0;
 	while (i < upto)
-	{
-		free(cfg->map[i]);
-		i++;
-	}
-	free_raw_vec(raw, h);
+		free(cfg->map[i++]);
+	free(cfg->map);
+	cfg->map = NULL;
+	while (upto < h)
+		free(raw[upto++]);
+	free(raw);
 }
 
 /**
@@ -108,6 +109,7 @@ int	copy_rows_or_fail(t_config *cfg, char **raw, int h, int w)
 	while (i < h)
 	{
 		cfg->map[i] = malloc(w + 1);
+		// if (i==3) cfg->map[i] = NULL;
 		if (!cfg->map[i])
 		{
 			cleanup_alloc_fail(cfg, raw, h, i);

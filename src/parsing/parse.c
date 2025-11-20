@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:37:18 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/20 15:41:04 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,64 @@ void	in_map_step(t_config *cfg, t_pstate *st)
 }
 
 /**
- * @brief Parses a header line and dispatches it to the appropriate handler.
- * 
- * This function identifies the type of header line based on its prefix
- * and calls the corresponding parsing function:
- * 
- * - `"NO"` → North texture path  
- * - `"SO"` → South texture path  
- * - `"WE"` → West texture path  
- * - `"EA"` → East texture path  
- * - `"F"`  → Floor color  
- * - `"C"`  → Ceiling color  
- * 
- * Any unrecognized line returns 0 to indicate a parsing failure.
- * 
+ * @brief Parses a header line defining a floor or ceiling color.
+ *
+ * This function checks whether the given pointer `ptr` refers to a
+ * floor (`F`) or ceiling (`C`) color definition. It ensures that each
+ * of these identifiers appears only once in the configuration file.
+ *
+ * - `"F"` → parses the floor RGB color  
+ * - `"C"` → parses the ceiling RGB color  
+ *
+ * If a duplicate `F` or `C` line is encountered, the function returns 0
+ * to indicate an invalid or already processed header.
+ *
+ * @param cfg Pointer to the configuration structure storing color data
+ *            and flags (`seen_floor`, `seen_ceiling`).
+ * @param ptr Pointer to the start of the header content (after trimming spaces).
+ * @return 1 if a valid color line was parsed, 0 otherwise.
+ */
+int	parse_line_color(t_config *cfg, const char *ptr)
+{
+	if (!ft_strncmp(ptr, "F ", 2))
+	{
+		if (cfg->seen_floor)
+			return (0);
+		cfg->seen_floor = true;
+		return (parse_color_line(&cfg->floor, ptr + 1));
+	}
+	if (!ft_strncmp(ptr, "C ", 2))
+	{
+		if (cfg->seen_ceiling)
+			return (0);
+		cfg->seen_ceiling = true;
+		return (parse_color_line(&cfg->ceiling, ptr + 1));
+	}
+	return (0);
+}
+
+/**
+ * @brief Parses a configuration header line and dispatches it to the proper handler.
+ *
+ * This function identifies the type of header based on its prefix and
+ * calls the corresponding parsing function. It supports:
+ *
+ * - `"NO"` → North texture  
+ * - `"SO"` → South texture  
+ * - `"WE"` → West texture  
+ * - `"EA"` → East texture  
+ * - `"F"` / `"C"` → Floor or ceiling color (delegated to `parse_line_color()`)  
+ *
+ * All texture identifiers must appear only once. Floor and ceiling
+ * colors are validated by `parse_line_color()` which enforces the
+ * single-occurrence rule.
+ *
+ * If the line does not match any known header format, the function
+ * returns 0 to indicate an unrecognized or invalid header.
+ *
  * @param cfg Pointer to the configuration structure.
- * @param line The line to parse.
- * @return 1 if a valid header was parsed, 0 otherwise.
+ * @param line Raw line read from the configuration file.
+ * @return 1 if the line corresponds to a valid header, 0 otherwise.
  */
 int	parse_line_header(t_config *cfg, const char *line)
 {
@@ -78,10 +119,8 @@ int	parse_line_header(t_config *cfg, const char *line)
 		return (parse_texture_line(&cfg->tx, "WE", ptr + 2));
 	if (!ft_strncmp(ptr, "EA ", 3))
 		return (parse_texture_line(&cfg->tx, "EA", ptr + 2));
-	if (!ft_strncmp(ptr, "F ", 2))
-		return (parse_color_line(&cfg->floor, ptr + 1));
-	if (!ft_strncmp(ptr, "C ", 2))
-		return (parse_color_line(&cfg->ceiling, ptr + 1));
+	if (parse_line_color(cfg, ptr))
+		return (1);
 	return (0);
 }
 
