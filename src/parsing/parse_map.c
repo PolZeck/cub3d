@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:00 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/17 11:31:13 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/20 16:01:24 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,9 @@ int	normalize_map(t_config *cfg, char **raw, int n)
 		return (0);
 	}
 	if (!copy_rows_or_fail(cfg, raw, h, w))
+	{
 		return (0);
+	}
 	cfg->map_h = h;
 	cfg->map_w = w;
 	return (1);

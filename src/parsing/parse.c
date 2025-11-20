@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/20 15:41:04 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/20 16:09:47 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int	parse_line_color(t_config *cfg, const char *ptr)
 }
 
 /**
- * @brief Parses a configuration header line and dispatches it to the proper handler.
+ * @brief Parses a configuration header line and dispatches
+ * 	it to the proper handler.
  *
  * This function identifies the type of header based on its prefix and
  * calls the corresponding parsing function. It supports:
