@@ -3,14 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/20 16:09:47 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/24 14:40:51 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/**
+ * @brief Validates that a file path is a correct `.cub` map file.
+ *
+ * This function checks two things:
+ *  1. The path must contain **exactly one dot** (`.`).
+ *  2. The last four characters must be the literal string `.cub`.
+ *
+ * @param path The file path to validate.
+ * @return 1 if the path is valid, 0 otherwise.
+ */
+static int	is_valid_path(const char *path)
+{
+	int	i;
+	int	dot_count;
+	int	len;
+
+	if (!path)
+		return (0);
+	i = 0;
+	dot_count = 0;
+	len = 0;
+	while (path[len])
+		len++;
+	while (path[i])
+	{
+		if (path[i] == '.')
+			dot_count++;
+		i++;
+	}
+	if (dot_count != 1)
+		return (0);
+	if (len < 5)
+		return (0);
+	if (path[len - 4] != '.' || path[len - 3] != 'c'
+		|| path[len - 2] != 'u' || path[len - 1] != 'b')
+		return (0);
+	return (1);
+}
 
 /**
  * @brief Processes a line belonging to the map section during parsing.
@@ -149,6 +188,8 @@ int	parse_config(const char *path, t_config *cfg)
 
 	ft_bzero(cfg, sizeof(*cfg));
 	init_pstate(&st);
+	if (!is_valid_path(path))
+		error_exit("Error\nInvalid .cub filename");
 	st.fd = open(path, O_RDONLY);
 	if (st.fd < 0)
 		error_exit("Error\nCannot open .cub");
