@@ -15,7 +15,7 @@ MLX_DIR     := minilibx-linux
 
 # === Compiler / Flags ===
 CC          := cc
-CFLAGS      := -Wall -Wextra -Werror
+CFLAGS      := -Wall -Wextra -Werror -O3
 CPPFLAGS    := -I$(INC_DIR)
 LDFLAGS     :=
 
