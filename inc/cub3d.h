@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/20 15:41:22 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/26 14:33:46 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,22 @@ typedef struct s_textures
 	char	*ea;
 }	t_textures;
 
+typedef struct s_wall
+{
+	int	x;
+	int	y;
+}	t_wall;
+
 typedef struct s_config
 {
 	t_textures	tx;
 	t_rgb		floor;
 	t_rgb		ceiling;
-
 	char		**map;
 	int			map_w;
 	int			map_h;
+	t_wall		*walls;
+	int			n_walls;
 	int			player_x;
 	int			player_y;
 	char		player_dir;
@@ -82,6 +89,7 @@ int		normalize_map(t_config *cfg, char **raw, int n);
 void	init_pstate(t_pstate *st);
 int		read_one_line(t_pstate *st);
 void	strip_eol(char *line);
+void	precompute_walls(t_config *cfg);
 void	before_map_step(t_config *cfg, t_pstate *st,
 			int (*is_hdr)(const char *),
 			int (*parse_hdr)(t_config *, const char *));

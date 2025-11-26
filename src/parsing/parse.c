@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/24 14:40:51 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/26 14:17:21 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	is_valid_path(const char *path)
 	}
 	if (dot_count != 1)
 		return (0);
-	if (len < 5)
+	if (len < 9)
 		return (0);
 	if (path[len - 4] != '.' || path[len - 3] != 'c'
 		|| path[len - 2] != 'u' || path[len - 1] != 'b')

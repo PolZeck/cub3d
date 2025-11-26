@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:53 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 10:44:14 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/26 14:34:33 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ void	free_config(t_config *cfg)
 			i++;
 		}
 		free(cfg->map);
+	}
+	if (cfg->walls)
+	{
+		free(cfg->walls);
+		cfg->walls = NULL;
 	}
 }
 

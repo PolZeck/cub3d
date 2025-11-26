@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 09:39:40 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:35:07 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/26 14:41:17 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,6 @@
 #include "raycast.h"
 #include <float.h>
 #include <math.h>
-
-/**
- * @brief Checks whether a map cell is a wall or out of bounds.
- *
- * Returns 1 if the (x, y) cell is outside the map rectangle or
- * if the map stores a '1' (wall) at that position. Returns 0
- * otherwise. Treating OOB as wall prevents escaping the map.
- *
- * @param a  Application context (provides map accessors).
- * @param x  Cell X coordinate.
- * @param y  Cell Y coordinate.
- * @return 1 if the cell is a wall or OOB, 0 otherwise.
- */
-static int	is_wall(const t_app *a, int x, int y)
-{
-	if (x < 0 || y < 0 || x >= map_w(a) || y >= map_h(a))
-		return (1);
-	return (map_at(a, y, x) == '1');
-}
 
 /**
  * @brief Updates the ray with the currently best (closest) hit data.
@@ -52,8 +33,8 @@ static void	update_best_hit(t_ray *r, const t_hit_update *u)
 }
 
 /**
- * @brief Tests a single map cell for ray-box intersection and
- *        updates the ray if this hit is closer than the current best.
+ * @brief Tests a single wall cell for ray-box intersection and updates
+ *        the ray if this hit is closer than the current best.
  *
  * Uses the slab method via ray_box_intersect to compute the entry
  * distance into the unit box at (x, y). If the entry t is positive
@@ -89,34 +70,27 @@ static void	check_cell_hit(t_app *a, t_ray *r, int x, int y)
 
 /**
  * @brief Finds the first (closest) wall hit for a ray by scanning
- *        all wall cells and keeping the minimum positive entry t.
+ *        the precomputed list of wall cells only.
  *
- * Initializes the ray with t = DBL_MAX (no hit). Iterates the map
- * grid; for each wall cell, performs an AABB ray test. If any hit
- * is found, sets r->hit = 1 and leaves r filled with the closest
- * impact distance, cell coordinates, and side.
+ * Initializes the ray with t = DBL_MAX (no hit). Iterates through
+ * the list of wall coordinates in cfg->walls; for each one, performs
+ * an AABB ray test. If any hit is found, sets r->hit = 1 and leaves
+ * r filled with the closest impact distance, cell coordinates, and side.
  *
  * @param a  Application context (map and player state).
  * @param r  Ray to fill with hit information.
  */
 void	ray_find_first_hit(t_app *a, t_ray *r)
 {
-	int	y;
-	int	x;
+	int	i;
 
 	r->t = DBL_MAX;
 	r->hit = 0;
-	y = 0;
-	while (y < map_h(a))
+	i = 0;
+	while (i < a->cfg.n_walls)
 	{
-		x = 0;
-		while (x < map_w(a))
-		{
-			if (is_wall(a, x, y))
-				check_cell_hit(a, r, x, y);
-			x++;
-		}
-		y++;
+		check_cell_hit(a, r, a->cfg.walls[i].x, a->cfg.walls[i].y);
+		i++;
 	}
 	if (r->t < DBL_MAX)
 		r->hit = 1;

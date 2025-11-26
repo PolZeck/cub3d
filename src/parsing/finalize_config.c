@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:04:14 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/20 16:02:25 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/26 14:45:59 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	finalize_config_stage2(t_config *cfg, t_pstate *st)
 		free_config(cfg);
 		error_exit("Error\nMap normalization failed");
 	}
+	precompute_walls(cfg);
 	if (!validate_config(cfg))
 	{
 		free_config(cfg);
