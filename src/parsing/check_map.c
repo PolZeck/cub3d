@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:00:28 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/11 13:39:13 by lcosson          ###   ########.fr       */
+/*   Updated: 2025/11/26 15:34:16 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,11 @@ int	validate_config(t_config *cfg)
 {
 	if (!check_map_chars_and_player(cfg))
 		return (0);
+	if (!cfg->seen_floor || !cfg->seen_ceiling)
+	{
+		free_config(cfg);
+		error_exit("Error\nMissing floor or ceiling color");
+	}
 	if (!check_map_closed(cfg))
 	{
 		free_config(cfg);
