@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_finder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pol <pol@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 14:48:00 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/26 18:00:28 by pol              ###   ########.fr       */
+/*   Updated: 2025/11/27 10:32:54 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
  * @param cfg Pointer to the configuration containing the map.
  * @return Number of walls found.
  */
-static int count_walls(const t_config *cfg)
+static int	count_walls(const t_config *cfg)
 {
-	int x;
-	int y;
-	int count;
+	int	x;
+	int	y;
+	int	count;
 
 	count = 0;
 	y = 0;
@@ -45,11 +45,11 @@ static int count_walls(const t_config *cfg)
  *
  * @param cfg Pointer to the configuration containing the map and walls array.
  */
-static void fill_walls(t_config *cfg)
+static void	fill_walls(t_config *cfg)
 {
-	int x;
-	int y;
-	int i;
+	int	x;
+	int	y;
+	int	i;
 
 	i = 0;
 	y = 0;
@@ -74,7 +74,7 @@ static void fill_walls(t_config *cfg)
  *
  * @param cfg Pointer to the configuration structure.
  */
-void precompute_walls(t_config *cfg)
+void	precompute_walls(t_config *cfg)
 {
 	cfg->n_walls = count_walls(cfg);
 	cfg->walls = malloc(sizeof(t_wall) * cfg->n_walls);

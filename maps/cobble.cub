@@ -2,7 +2,8 @@ NO ./textures/cobblestone.xpm
 SO ./textures/cobblestone_01.xpm
 WE ./textures/mossy_cobblestone1.xpm
 EA ./textures/cobblestone_02.xpm
-
+F 102,96,88
+C 110,135,155
 
 1111111111111111111
 10010S0001001000001
