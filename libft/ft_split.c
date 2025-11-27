@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 09:53:20 by pledieu           #+#    #+#             */
-/*   Updated: 2024/11/15 08:48:59 by pledieu          ###   ########lyon.fr   */
+/*   Updated: 2025/11/27 15:23:53 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ char	**ft_split(char *str, char c)
 {
 	char	**strings;
 	int		i;
+	int		count;
 
 	i = 0;
+	count = 0;
 	strings = malloc(sizeof(char *) * (count_strings(str, c) + 1));
 	if (!strings)
 		return (NULL);

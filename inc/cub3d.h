@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcosson <lcosson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:21:59 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/26 14:33:46 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:57:35 by lcosson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,7 @@ void	free_raw_vec(char **raw, int h);
 int		check_map_closed(const t_config *cfg);
 void	error_exit_app(const char *msg, t_app *app);
 void	free_pstate(t_pstate *st);
+int		check_coma(char *str);
+int		extract_rgb_values(char *s, int vals[3]);
 
 #endif
