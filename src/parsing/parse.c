@@ -6,7 +6,7 @@
 /*   By: pledieu <pledieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:58:34 by pledieu           #+#    #+#             */
-/*   Updated: 2025/11/26 14:17:21 by pledieu          ###   ########.fr       */
+/*   Updated: 2025/11/27 16:07:01 by pledieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,14 @@
 static int	is_valid_path(const char *path)
 {
 	int	i;
-	int	dot_count;
 	int	len;
 
 	if (!path)
 		return (0);
 	i = 0;
-	dot_count = 0;
 	len = 0;
 	while (path[len])
 		len++;
-	while (path[i])
-	{
-		if (path[i] == '.')
-			dot_count++;
-		i++;
-	}
-	if (dot_count != 1)
-		return (0);
 	if (len < 9)
 		return (0);
 	if (path[len - 4] != '.' || path[len - 3] != 'c'
